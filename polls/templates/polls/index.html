@@ -13,12 +13,16 @@
     <!-- scripts -->
     <script defer src="{% static 'polls/survey.js' %}"></script>
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="{% static 'polls/favicon.png' %}"
     <title>Housewarming</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'polls/images/favicon.png' %}"
+
 </head>
 <body>
     <h1>Doing the Dirty Durham</h1>
     <div class="text">Answer these questions my guys</div>
+    <div class="img-container">
+        <img src="{% static 'polls/images/house.jpg' %}"
+    </div>
     <div class="poll-container"></div>
     <div class="btn-container">
         <button class="btn prev-btn">Previous</button>
