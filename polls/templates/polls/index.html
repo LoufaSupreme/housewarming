@@ -29,12 +29,67 @@
         </div>    
     </div>
 
+    <div class="poll-container">
+        <div class='poll-question'>Let's get your House Pass set up</div>
+        <div class="poll-choice-container">
+            <div class="input-container">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" placeholder="Your real first name">
+            </div>
+            <div class="input-container">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" placeholder="Your real last name">
+            </div>
+            <div class="input-container">
+                <label for="alias">Alias:</label>
+                <input type="text" name="alias" placeholder="Your street name">
+            </div>
+            <div class="input-container">
+                <label for="fav_colour">Favourite Colour:</label>
+                <select name="fav_colour">
+                    {% for c in colours %}
+                    <option value="{{ c.hsl }}">{{ c.colour }}</option>
+                    {% endfor %}
+                </select>                
+            </div>
+            <div class="input-container">
+                <label for="fav_drink">Favourite Alcoholic Drink:</label>
+                <select name="fav_drink">
+                    {% for drink in drinks %}
+                    <option value="{{ drink }}">{{ drink }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="fav_animal">Spirit Animal:</label>
+                <select name="fav_animal">
+                    {% for animal in animals %}
+                    <option value="{{ animal }}">{{ animal }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="picture">Picture:</label>
+                <input type="file" name="picture">
+            </div>
+        </div>
+        <div class="poll-img-container"></div>
+        <div class="poll-btn-container">
+            <button class="btn btn-prev">Previous</button>
+            <button class="btn btn-next">Next</button>
+        </div>    
+    </div>
+
     {% for question in questions %}
     <div id="{{question.id}}" class="poll-container">
-        <div class='poll-question'></div>
+        <div class='poll-question'>{{ question.q_text }}</div>
         <div class="poll-choice-container">
             {% for choice in question.choices %}
-            <input type="radio" value="{{question.q_text}}" id="{{choice.id}}">
+                {% if question.type == 'checkbox' %}
+                <input type="checkbox" value="{{choice.choice_text}}" id="{{choice.id}}">
+                {% else %}
+                <input type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}"
+                {% endif %}
             {% endfor %}
         </div>
         <div class="poll-img-container">
