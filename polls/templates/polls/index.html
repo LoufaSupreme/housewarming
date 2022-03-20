@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -18,15 +17,36 @@
 
 </head>
 <body>
-    <h1>Doing the Dirty Durham</h1>
-    <div class="text">Answer these questions my guys</div>
-    <div class="img-container">
-        <img src="{% static 'polls/images/house.jpg' %}"
+    <div class="poll-container">
+        <div class='poll-title'>You've Been Invited</div>
+        <div class="poll-subtitle">to do the dirty Durham</div>
+        <div class="poll-img-container">
+            <img src="{% static 'polls/images/house.jpg' %}"
+        </div>
+        <div class="poll-text"></div>
+        <div class="poll-btn-container">
+            <button class="btn btn-start">Get Started</button>
+        </div>    
     </div>
-    <div class="poll-container"></div>
-    <div class="btn-container">
-        <button class="btn prev-btn">Previous</button>
-        <button class="btn next-btn">Next</button>
+
+    {% for question in questions %}
+    <div id="{{question.id}}" class="poll-container">
+        <div class='poll-question'></div>
+        <div class="poll-choice-container">
+            {% for choice in question.choices %}
+            <input type="radio" value="{{question.q_text}}" id="{{choice.id}}">
+            {% endfor %}
+        </div>
+        <div class="poll-img-container">
+            <img src="{% static 'polls/images/house.jpg' %}"
+        </div>
+        <div class="poll-text"></div>
+        <div class="poll-btn-container">
+            <button class="btn btn-prev">Previous</button>
+            <button class="btn btn-next">Next</button>
+        </div>    
     </div>
+    {% endfor %}
+
 </body>
 </html>

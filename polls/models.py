@@ -9,6 +9,8 @@ class Guest(models.Model):
     last_name = models.CharField(max_length=10)
     alias = models.CharField(max_length=20, blank=True)
     fav_color = models.CharField(max_length=20, blank=True)
+    fav_drink = models.CharField(max_length=20, blank=True)
+    fav_animal = models.CharField(max_length=20, blank=True)
     email = EmailField(max_length=100, blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
