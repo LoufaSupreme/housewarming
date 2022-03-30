@@ -23,7 +23,7 @@
     <div class="poll-container">
         <div class='poll-title'>You've Been Invited</div>
         <div class="poll-subtitle">to do the dirty Durham</div>
-        <div class="poll-img-container">
+        <div class="poll-img-container round">
             <img src="{% static 'polls/images/house.jpg' %}">
         </div>
         <div class="poll-text"></div>
@@ -50,6 +50,7 @@
             <div class="input-container">
                 <label for="colorInput" class="form-label">Your Favourite Colour:</label>
                 <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
+            </div>
             <div class="input-container">
                 <label for="fav_drink">Favourite Alcoholic Drink:</label>
                 <select class="form-select" name="fav_drink">
@@ -82,16 +83,16 @@
     <div id="{{question.id}}" class="poll-container">
         <div class='poll-question'>{{ question.q_text }}</div>
         <div class="poll-choice-container">
-            {% for choice in question.choices %}
+            {% for choice in question.choices.all %}
                 {% if question.type == 'checkbox' %}
-                <input type="checkbox" value="{{choice.choice_text}}" id="{{choice.id}}">
+                <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" id="{{choice.id}}">
                 {% else %}
-                <input type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}"
+                <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}">
                 {% endif %}
             {% endfor %}
         </div>
         <div class="poll-img-container">
-            <img src="{% static 'polls/images/house.jpg' %}"
+            <img src=""
         </div>
         <div class="poll-text"></div>
         <div class="poll-btn-container">

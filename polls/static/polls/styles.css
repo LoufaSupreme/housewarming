@@ -7,6 +7,10 @@ body {
 }
 
 .poll-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 90%;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
     border-radius: 1rem;
@@ -14,7 +18,7 @@ body {
     padding: 1rem;
 }
 
-.poll-img-container {
+.poll-img-container.round {
     border-radius: 50%;
     max-width: 90%;
     height: 0;
@@ -28,4 +32,10 @@ img {
     transform: translateX(-15%);
     max-width: 150%;
     aspect-ratio: 1 / 1;
+}
+
+.poll-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
