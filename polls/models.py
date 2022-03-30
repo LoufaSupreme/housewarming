@@ -36,6 +36,7 @@ class Question(models.Model):
         return {
             'id': self.id,
             'q_text': self.q_text,
+            'type': self.type,
         }
 
 class Choice(models.Model):
