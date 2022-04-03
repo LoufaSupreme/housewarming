@@ -23,3 +23,9 @@ def index(request):
         "drinks": DRINK_OPTIONS,
         "animals": ANIMAL_OPTIONS,
     })
+
+def create(request):
+    if request.method == 'GET':
+        return render(request, 'polls/create.html', {
+            
+        })
