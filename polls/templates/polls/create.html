@@ -12,11 +12,19 @@
             <textarea id="question-text" name="question-text" rows="4" cols="20"></textarea>
         </div>
 
-        <div id="q-type" class="input-container flex">
-            <input type="radio" id="checkbox" name="type" value="checkbox">
-            <label for="checkbox">Checkbox</label>
-            <input type="radio" id="radio" name="type" value="radio" checked="checked">
-            <label for="radio">Radio</label>
+        <div class="input-container flex flex-col">
+            <label class="left-just">Type</label>
+            <div class="flex radio-row">
+                <input type="radio" id="checkbox" name="type" value="checkbox">
+                <label for="checkbox">Checkbox</label>
+                <input type="radio" id="radio" name="type" value="radio" checked="checked">
+                <label for="radio">Radio</label>
+            </div>
+        </div>
+
+        <div class="input-container flex flex-col">
+            <label class="left-just">Image</label>
+            <input type="file">
         </div>
 
         <div class="input-container flex flex-col">

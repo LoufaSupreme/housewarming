@@ -61,7 +61,7 @@ img {
 }
 
 label {
-
+    padding-bottom: 0.3rem;
 }
 
 form {
@@ -80,7 +80,7 @@ input {
 
 textarea {
     padding: 0.5rem;
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
 }
 
 input[type=text] {
@@ -95,6 +95,6 @@ textarea {
     border-radius: 0.5rem;
 }
 
-#q-type {
-    justify-content: space-evenly;
+.radio-row > * {
+    padding: 0 1rem 0 0.4rem;
 }
