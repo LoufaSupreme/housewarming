@@ -5,5 +5,40 @@
 {% endblock %}
 
 {% block body %}
-    Create
+    <h1 class="main-header">Create Question</h1>
+    <form class="flex flex-col">
+        <div class="input-container flex flex-col">
+            <label for="question-text" class="left-just">Question Text</label>
+            <textarea id="question-text" name="question-text" rows="4" cols="20"></textarea>
+        </div>
+
+        <div id="q-type" class="input-container flex">
+            <input type="radio" id="checkbox" name="type" value="checkbox">
+            <label for="checkbox">Checkbox</label>
+            <input type="radio" id="radio" name="type" value="radio" checked="checked">
+            <label for="radio">Radio</label>
+        </div>
+
+        <div class="input-container flex flex-col">
+            <label for="option-1" class="left-just">Option 1</label>
+            <input type="text" name="option-1">
+
+            <label for="option-2" class="left-just">Option 2</label>
+            <input type="text" name="option-2">
+
+            <label for="option-3" class="left-just">Option 3</label>
+            <input type="text" name="option-3">
+
+            <label for="option-4" class="left-just">Option 4</label>
+            <input type="text" name="option-4">
+
+            <label for="option-5" class="left-just">Option 5</label>
+            <input type="text" name="option-5">
+        </div>
+        <div class="btn-container">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
 {% endblock %}
