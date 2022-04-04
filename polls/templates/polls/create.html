@@ -6,7 +6,8 @@
 
 {% block body %}
     <h1 class="main-header">Create Question</h1>
-    <form class="flex flex-col">
+    <form class="flex flex-col" method="POST" action="/create/" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="input-container flex flex-col">
             <label for="question-text" class="left-just">Question Text</label>
             <textarea id="question-text" name="question-text" rows="4" cols="20"></textarea>
@@ -24,7 +25,7 @@
 
         <div class="input-container flex flex-col">
             <label class="left-just">Image</label>
-            <input type="file">
+            <input type="file" name="q-img" accept="image/*">
         </div>
 
         <div class="input-container flex flex-col">
@@ -44,7 +45,7 @@
             <input type="text" name="option-5">
         </div>
         <div class="btn-container">
-            <button class="btn btn-primary">Submit</button>
+            <input type="submit" class="btn btn-primary">
         </div>
 
     </form>

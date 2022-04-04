@@ -74,16 +74,17 @@
             {% for choice in question.choices.all %}
                 {% if question.type == 'checkbox' %}
                 <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="{{choice.id}}">
-                <label for="{{choice.id}}">{{choice.choice_text}}</label>
-                <br>
                 {% else %}
-                <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}">
+                <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="{{ question.q_text }}">
                 {% endif %}
+                <label for="{{choice.id}}">{{choice.choice_text}}</label>
             {% endfor %}
         </div>
+        {% if question.image %}
         <div class="poll-img-container">
-            <img src=""
+            <img src="/static/polls/images{{ question.image }}">
         </div>
+        {% endif %}
         <div class="poll-text"></div>
         <div class="btn-container">
             <button class="btn btn-prev btn-warning">Previous</button>
