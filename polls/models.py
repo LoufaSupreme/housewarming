@@ -29,6 +29,7 @@ class Question(models.Model):
     q_text = models.CharField(max_length=255)
     type = models.CharField(max_length=20)
     image = models.ImageField(blank=True)
+    position = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.id}: {self.q_text[:20]}...'
