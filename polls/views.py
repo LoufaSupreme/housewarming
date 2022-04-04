@@ -33,14 +33,17 @@ def create(request):
         try:
             question = request.POST['question-text']
             q_type = request.POST['type']
+            position = request.POST['position']
+            
             try:
                 img = request.FILES['q-img']
             except:
                 img = None
+
             options = [request.POST['option-1'],request.POST['option-2'],request.POST['option-3'],request.POST['option-4'],request.POST['option-5']]
 
             if question is not None and question is not "":
-                question = Question(q_text=question, type=q_type)
+                question = Question(q_text=question, type=q_type, position=position)
                 if img is not None:
                     question.image = img
                 question.save()
