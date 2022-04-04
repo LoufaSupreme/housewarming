@@ -12,7 +12,7 @@
         <div class='poll-title'>You've Been Invited</div>
         <div class="poll-subtitle">to do the dirty Durham</div>
         <div class="poll-img-container round">
-            <img src="{% static 'polls/images/house.jpg' %}">
+            <img id="intro-img" src="{% static 'polls/images/house.jpg' %}">
         </div>
         <div class="poll-text"></div>
         <div class="btn-container">
@@ -22,7 +22,7 @@
 
     <div class="poll-container">
         <div class='poll-question'>Let's get your House Pass set up</div>
-        <div class="poll-choice-container">
+        <div class="poll-choice-container flex flex-col">
             <div class="input-container">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" placeholder="Your real first name">
@@ -56,7 +56,7 @@
                 </select>
             </div>
             <div class="input-container">
-                <label for="picture">Picture:</label>
+                <label for="picture">Mug Shot:</label>
                 <input type="file" name="picture">
             </div>
         </div>
@@ -70,22 +70,23 @@
     {% for question in questions %}
     <div id="{{question.id}}" class="poll-container">
         <div class='poll-question'>{{ question.q_text }}</div>
-        <div class="poll-choice-container">
+        {% if question.image %}
+        <div class="poll-img-container">
+            <img class="poll-img" src="/static/polls/images/{{ question.image }}">
+        </div>
+        {% endif %}
+        <div class="poll-choice-container flex flex-col">
             {% for choice in question.choices.all %}
+            <div class="choice flex left-just">
                 {% if question.type == 'checkbox' %}
                 <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="{{choice.id}}">
                 {% else %}
                 <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="{{ question.q_text }}">
                 {% endif %}
                 <label for="{{choice.id}}">{{choice.choice_text}}</label>
+            </div>
             {% endfor %}
         </div>
-        {% if question.image %}
-        <div class="poll-img-container">
-            <img src="/static/polls/images/{{ question.image }}">
-        </div>
-        {% endif %}
-        <div class="poll-text"></div>
         <div class="btn-container">
             <button class="btn btn-prev btn-warning">Previous</button>
             <button class="btn btn-next btn-primary">Next</button>
