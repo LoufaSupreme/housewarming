@@ -8,6 +8,8 @@
 
 {% block body %}
 
+<div class="carousel">
+
     <div class="poll-container">
         <div class='poll-title'>You've Been Invited</div>
         <div class="poll-subtitle">to do the dirty Durham</div>
@@ -21,7 +23,7 @@
     </div>
 
     <div class="poll-container">
-        <div class='poll-question'>Let's get your House Pass set up</div>
+        <div class='poll-question'>I made this survey to </div>
         <div class="poll-choice-container flex flex-col">
             <div class="input-container">
                 <label for="first_name">First Name:</label>
@@ -93,5 +95,11 @@
         </div>    
     </div>
     {% endfor %}
+    <div class="carousel-nav">
+        {% for question in questions %}
+        <button class="carousel-indicator"></button>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

@@ -22,7 +22,18 @@ body {
     /* background: rgb(0,20,20); */
 }
 
+.carousel {
+    position: relative;
+    margin: 0 auto;
+    height: 100vh;
+    width: 90%;
+}
+
 .poll-container {
+    position: absolute;
+    top: 30px;
+    background: white;
+    /* bottom: 0; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,6 +43,25 @@ body {
     border-radius: 1rem;
     margin: 1rem;
     padding: 1rem;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.carousel-indicator {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: rgba(0,0,0,0.3);
+    margin: 0 6px;
+}
+
+.carousel-indicator.current-slide {
+    background: rgba(0,0,0,0.75);
 }
 
 .poll-question {
@@ -131,3 +161,4 @@ input[type=file] {
 .radio-row > * {
     padding: 0 1rem 0 0.4rem;
 }
+
