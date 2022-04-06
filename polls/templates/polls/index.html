@@ -9,19 +9,13 @@
 {% block body %}
 
 <div class="carousel">
-    <div class="carousel-nav">
-        <button class="carousel-indicator"></button>
-        <button class="carousel-indicator"></button>
-        {% for question in questions %}
-        <button class="carousel-indicator"></button>
-        {% endfor %}
-        <button class="carousel-indicator"></button>
-    </div>
+    <div class="carousel-nav"></div>
     <div class="carousel-track-container">
         <div class="carousel-track">
+
             <div class="poll-container current-slide">
-                <div class='poll-title'>You've Been Invited</div>
-                <div class="poll-subtitle">to do the dirty Durham</div>
+                <div class='poll-title'>44 Mitchell Ave, Whitby</div>
+                <div class="poll-subtitle">Housewarming Soirée</div>
                 <div class="poll-img-container round">
                     <img id="intro-img" src="{% static 'polls/images/house.jpg' %}">
                 </div>
@@ -32,7 +26,27 @@
             </div>
 
             <div class="poll-container">
-                <div class='poll-question'>I made this survey to </div>
+                <div class='poll-question'>Congratulations, you've been invited to one of the biggest events this side of the 412 has ever seen.  Churches? Shrubbery? FREE PARKING?? Yes, Brooklin has it all. Truly putting the "Greater" in Greater Toronto Area.<br><br> Please tell me a bit about yourself so we can get your House Pass set up...</div>
+                <div class="housepass_container flex flex-col">
+                    <div class="housepass_main-content flex">
+                        <div class="housepass_img-container flex">
+                            <img class="housepass_img" src="{% static 'polls/images/profile_default.jpg' %}">
+                        </div>
+                        <div class="housepass_info-container flex flex-col">
+                            <div class="housepass_info-header flex">House Pass</div>
+                            <div class="housepass_info-access flex">VIP</div>
+                            <div class="housepass_info-badge-container">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="housepass_footer flex">FIRST "ALIAS" LAST</div>
+                </div>
                 <div class="poll-choice-container flex flex-col">
                     <div class="input-container">
                         <label for="first_name">First Name:</label>
@@ -46,36 +60,46 @@
                         <label for="alias">Alias:</label>
                         <input type="text" name="alias" placeholder="Your street name">
                     </div>
-                    <div class="input-container">
-                        <label for="colorInput" class="form-label">Your Favourite Colour:</label>
-                        <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
-                    </div>
-                    <div class="input-container">
-                        <label for="fav_drink">Favourite Alcoholic Drink:</label>
-                        <select class="form-select" name="fav_drink">
-                            {% for drink in drinks %}
-                            <option value="{{ drink }}">{{ drink }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="input-container">
-                        <label for="fav_animal">Spirit Animal:</label>
-                        <select class="form-select" name="fav_animal">
-                            {% for animal in animals %}
-                            <option value="{{ animal }}">{{ animal }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="input-container">
-                        <label for="picture">Mug Shot:</label>
-                        <input type="file" name="picture">
-                    </div>
                 </div>
-                <div class="poll-img-container"></div>
                 <div class="btn-container">
                     <button class="btn btn-prev btn-warning">Previous</button>
                     <button class="btn btn-next btn-primary">Next</button>
                 </div>    
+            </div>
+
+            <div class="poll-container">
+                <div class='poll-question'>And how about a few more obscure things...
+                    <div class="poll-choice-container flex flex-col">
+                        <div class="input-container">
+                            <label for="colorInput" class="form-label">Your Favourite Colour:</label>
+                            <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
+                        </div>
+                        <div class="input-container">
+                            <label for="fav_drink">Favourite Alcoholic Drink:</label>
+                            <select class="form-select" name="fav_drink">
+                                {% for drink in drinks %}
+                                <option value="{{ drink }}">{{ drink }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label for="fav_animal">Spirit Animal:</label>
+                            <select class="form-select" name="fav_animal">
+                                {% for animal in animals %}
+                                <option value="{{ animal }}">{{ animal }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label for="picture">Mug Shot:</label>
+                            <input type="file" name="picture">
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn btn-prev btn-warning">Previous</button>
+                        <button class="btn btn-next btn-primary">Next</button>
+                    </div>    
+                </div>
             </div>
 
             {% for question in questions %}

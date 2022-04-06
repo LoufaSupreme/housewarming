@@ -4,7 +4,15 @@ const startBtn = document.querySelector('.btn-start')
 const nextBtns = Array.from(document.querySelectorAll('.btn-next'))
 const previousBtns = Array.from(document.querySelectorAll('.btn-prev'))
 const dotsNav = document.querySelector('.carousel-nav')
-const indicatorDots = Array.from(dotsNav.children)
+const indicatorDots = []
+
+// make indicator dots to indicate which slide we're on
+slides.forEach(slide => {
+    const dot = document.createElement('button')
+    dot.classList.add('carousel-indicator')
+    dotsNav.appendChild(dot)
+    indicatorDots.push(dot)
+})
 
 const slideWidth = slides[0].getBoundingClientRect().width
 

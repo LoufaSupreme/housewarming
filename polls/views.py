@@ -7,12 +7,22 @@ from .models import Guest, Question, Choice
 # Globals
 DRINK_OPTIONS = [
     'Beer',
-    'Red Wine',
+    'Wine',
+    'Cider',
+    'Caesar',
+    'Moscow Mule',
+    'Scotch',
+    'Martini',
 ]
 
 ANIMAL_OPTIONS = [
     'Fox',
     'Capybara',
+    'Bunny',
+    'Owl',
+    'Eagle',
+    'Beaver',
+    'Mosquito',
 ]
 
 # Create your views here.
