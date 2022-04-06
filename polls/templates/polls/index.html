@@ -1,6 +1,6 @@
 {% extends "polls/layout.html" %}
 
-{% load static%}
+{% load static %}
 
 {% block title %}
     Housewarming
@@ -9,96 +9,99 @@
 {% block body %}
 
 <div class="carousel">
-
-    <div class="poll-container">
-        <div class='poll-title'>You've Been Invited</div>
-        <div class="poll-subtitle">to do the dirty Durham</div>
-        <div class="poll-img-container round">
-            <img id="intro-img" src="{% static 'polls/images/house.jpg' %}">
-        </div>
-        <div class="poll-text"></div>
-        <div class="btn-container">
-            <button class="btn btn-start btn-primary">Get Started</button>
-        </div>    
-    </div>
-
-    <div class="poll-container">
-        <div class='poll-question'>I made this survey to </div>
-        <div class="poll-choice-container flex flex-col">
-            <div class="input-container">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" placeholder="Your real first name">
-            </div>
-            <div class="input-container">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" placeholder="Your real last name">
-            </div>
-            <div class="input-container">
-                <label for="alias">Alias:</label>
-                <input type="text" name="alias" placeholder="Your street name">
-            </div>
-            <div class="input-container">
-                <label for="colorInput" class="form-label">Your Favourite Colour:</label>
-                <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
-            </div>
-            <div class="input-container">
-                <label for="fav_drink">Favourite Alcoholic Drink:</label>
-                <select class="form-select" name="fav_drink">
-                    {% for drink in drinks %}
-                    <option value="{{ drink }}">{{ drink }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="input-container">
-                <label for="fav_animal">Spirit Animal:</label>
-                <select class="form-select" name="fav_animal">
-                    {% for animal in animals %}
-                    <option value="{{ animal }}">{{ animal }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="input-container">
-                <label for="picture">Mug Shot:</label>
-                <input type="file" name="picture">
-            </div>
-        </div>
-        <div class="poll-img-container"></div>
-        <div class="btn-container">
-            <button class="btn btn-prev btn-warning">Previous</button>
-            <button class="btn btn-next btn-primary">Next</button>
-        </div>    
-    </div>
-
-    {% for question in questions %}
-    <div id="{{question.id}}" class="poll-container">
-        <div class='poll-question'>{{ question.q_text }}</div>
-        {% if question.image %}
-        <div class="poll-img-container">
-            <img class="poll-img" src="/static/polls/images/{{ question.image }}">
-        </div>
-        {% endif %}
-        <div class="poll-choice-container flex flex-col">
-            {% for choice in question.choices.all %}
-            <div class="choice flex left-just">
-                {% if question.type == 'checkbox' %}
-                <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="{{choice.id}}">
-                {% else %}
-                <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="{{ question.q_text }}">
-                {% endif %}
-                <label for="{{choice.id}}">{{choice.choice_text}}</label>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="btn-container">
-            <button class="btn btn-prev btn-warning">Previous</button>
-            <button class="btn btn-next btn-primary">Next</button>
-        </div>    
-    </div>
-    {% endfor %}
     <div class="carousel-nav">
         {% for question in questions %}
         <button class="carousel-indicator"></button>
         {% endfor %}
+    </div>
+    <div class="carousel-track-container">
+        <div class="carousel-track">
+            <div class="poll-container current-slide">
+                <div class='poll-title'>You've Been Invited</div>
+                <div class="poll-subtitle">to do the dirty Durham</div>
+                <div class="poll-img-container round">
+                    <img id="intro-img" src="{% static 'polls/images/house.jpg' %}">
+                </div>
+                <div class="poll-text"></div>
+                <div class="btn-container">
+                    <button class="btn btn-start btn-primary">Get Started</button>
+                </div>    
+            </div>
+
+            <div class="poll-container">
+                <div class='poll-question'>I made this survey to </div>
+                <div class="poll-choice-container flex flex-col">
+                    <div class="input-container">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" placeholder="Your real first name">
+                    </div>
+                    <div class="input-container">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name" placeholder="Your real last name">
+                    </div>
+                    <div class="input-container">
+                        <label for="alias">Alias:</label>
+                        <input type="text" name="alias" placeholder="Your street name">
+                    </div>
+                    <div class="input-container">
+                        <label for="colorInput" class="form-label">Your Favourite Colour:</label>
+                        <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
+                    </div>
+                    <div class="input-container">
+                        <label for="fav_drink">Favourite Alcoholic Drink:</label>
+                        <select class="form-select" name="fav_drink">
+                            {% for drink in drinks %}
+                            <option value="{{ drink }}">{{ drink }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <label for="fav_animal">Spirit Animal:</label>
+                        <select class="form-select" name="fav_animal">
+                            {% for animal in animals %}
+                            <option value="{{ animal }}">{{ animal }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <label for="picture">Mug Shot:</label>
+                        <input type="file" name="picture">
+                    </div>
+                </div>
+                <div class="poll-img-container"></div>
+                <div class="btn-container">
+                    <button class="btn btn-prev btn-warning">Previous</button>
+                    <button class="btn btn-next btn-primary">Next</button>
+                </div>    
+            </div>
+
+            {% for question in questions %}
+            <div id="{{question.id}}" class="poll-container">
+                <div class='poll-question'>{{ question.q_text }}</div>
+                {% if question.image %}
+                <div class="poll-img-container">
+                    <img class="poll-img" src="/static/polls/images/{{ question.image }}">
+                </div>
+                {% endif %}
+                <div class="poll-choice-container flex flex-col">
+                    {% for choice in question.choices.all %}
+                    <div class="choice flex left-just">
+                        {% if question.type == 'checkbox' %}
+                        <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="{{choice.id}}">
+                        {% else %}
+                        <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="{{ question.q_text }}">
+                        {% endif %}
+                        <label for="{{choice.id}}">{{choice.choice_text}}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-prev btn-warning">Previous</button>
+                    <button class="btn btn-next btn-primary">Next</button>
+                </div>    
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
