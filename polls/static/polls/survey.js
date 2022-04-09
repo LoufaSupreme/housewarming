@@ -6,6 +6,14 @@ const previousBtns = Array.from(document.querySelectorAll('.btn-prev'))
 const dotsNav = document.querySelector('.carousel-nav')
 const indicatorDots = []
 
+const firstName = document.querySelector('#first_name')
+firstName.displayField = document.querySelector('#hp_first')
+const lastName = document.querySelector('#last_name')
+lastName.displayField = document.querySelector('#hp_last')
+const alias = document.querySelector('#alias')
+alias.displayField = document.querySelector('#hp_alias')
+
+
 // make indicator dots to indicate which slide we're on
 slides.forEach(slide => {
     const dot = document.createElement('button')
@@ -15,7 +23,6 @@ slides.forEach(slide => {
 })
 
 const slideWidth = slides[0].getBoundingClientRect().width
-
 
 const setSlidePosition = (slide, index) => {
     slide.style.left = slideWidth * index + 'px'
@@ -83,3 +90,13 @@ indicatorDots.forEach(dot => {
 })
 
 // document.addEventListener('click', e => console.log(e.target))
+
+const updateUserInput = (e) => {
+    const input = e.target
+    const value = input.value
+    input.displayField.innerText = value;
+}
+
+firstName.addEventListener('input', updateUserInput)
+lastName.addEventListener('input', updateUserInput)
+alias.addEventListener('input', updateUserInput)
