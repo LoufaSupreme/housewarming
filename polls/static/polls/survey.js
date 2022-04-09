@@ -6,12 +6,31 @@ const previousBtns = Array.from(document.querySelectorAll('.btn-prev'))
 const dotsNav = document.querySelector('.carousel-nav')
 const indicatorDots = []
 
+// housepass
+const housepass = document.querySelector('#housepass')
+const housepassName = housepass.querySelector('#housepass_name')
+const housepassImg = housepass.querySelector('.housepass_img')
+const housepassAccess = housepass.querySelector('.housepass_info-access')
+const drinkBadge = housepass.querySelector('.drink-badge')
+const animalBadge = housepass.querySelector('.animal-badge')
+const guestBadge = housepass.querySelector('.guest-badge')
+const kegBadge = housepass.querySelector('.keg-badge')
+const hottubBadge = housepass.querySelector('.hottub-badge')
+const sleepBadge = housepass.querySelector('.sleep-badge')
+
+// Q1
 const firstName = document.querySelector('#first_name')
 firstName.displayField = document.querySelector('#hp_first')
 const lastName = document.querySelector('#last_name')
 lastName.displayField = document.querySelector('#hp_last')
 const alias = document.querySelector('#alias')
 alias.displayField = document.querySelector('#hp_alias')
+
+// Q2
+const favColor = document.querySelector('#colorInput')
+const favDrink = document.querySelector('#fav-drink')
+const animal = document.querySelector('#animal')
+const profilePic = document.querySelector('#profile-pic')
 
 
 // make indicator dots to indicate which slide we're on
@@ -94,9 +113,33 @@ indicatorDots.forEach(dot => {
 const updateUserInput = (e) => {
     const input = e.target
     const value = input.value
+
+    if (input.id === 'colorInput') {
+        housepass.style.background = value
+    }
+
     input.displayField.innerText = value;
+    adjustFontSize(housepassName)
+}
+
+const adjustFontSize = (element) => {
+    const spanWidth = element.getBoundingClientRect().width
+    let fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size').replace("px","");
+    console.log(fontSize)
+    const parentWidth = element.parentElement.getBoundingClientRect().width
+
+    if (spanWidth > parentWidth * 0.9) {
+        fontSize *= 0.9
+    }
+    else if (spanWidth < parentWidth) {
+        fontSize *= 1.1
+    }
+
+    document.documentElement.style.setProperty('--hp-footer-fs', fontSize + 'px')
+
 }
 
 firstName.addEventListener('input', updateUserInput)
 lastName.addEventListener('input', updateUserInput)
 alias.addEventListener('input', updateUserInput)
+favColor.addEventListener('input', updateUserInput)

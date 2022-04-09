@@ -8,7 +8,6 @@ from .models import Guest, Question, Choice
 DRINK_OPTIONS = [
     'Beer',
     'Wine',
-    'Cider',
     'Caesar',
     'Moscow Mule',
     'Scotch',

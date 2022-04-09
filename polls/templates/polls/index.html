@@ -10,9 +10,36 @@
 
 <div class="carousel">
     <div class="carousel-nav"></div>
+
+    <div id="housepass" class="housepass_container flex flex-col">
+        <div class="housepass_main-content flex">
+            <div class="housepass_img-container flex">
+                <img class="housepass_img" src="{% static 'polls/images/profile_default.jpg' %}">
+            </div>
+            <div class="housepass_info-container flex flex-col">
+                <div class="housepass_info-header flex">House Pass</div>
+                <div class="housepass_info-access flex">⭐ VIP ⭐</div>
+                <div class="housepass_info-badge-container">
+                    <img id="drink-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                    <img id="animal-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                    <img id="hottub-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                    <img id="guest-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                    <img id="keg-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                    <img id="sleep-badge" class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
+                </div>
+            </div>
+        </div>
+        <div class="housepass_footer flex">
+            <span id="housepass_name">
+                <span id="hp_first">First</span>
+                "<span id="hp_alias">ALIAS</span>"
+                <span id="hp_last">Last</span>
+            </span>
+        </div>
+    </div>
+
     <div class="carousel-track-container">
         <div class="carousel-track">
-
             <div class="poll-container current-slide">
                 <div class='poll-title'>44 Mitchell Ave, Whitby</div>
                 <div class="poll-subtitle">Housewarming Soirée</div>
@@ -26,47 +53,8 @@
             </div>
 
             <div class="poll-container">
-                <div class='poll-question'>Congratulations, you've been invited to one of the biggest events this side of the 412 has ever seen.  Churches? Shrubbery? FREE PARKING?? Yes, Brooklin has it all. Truly putting the "Greater" in Greater Toronto Area.<br><br> Please tell me a bit about yourself so we can get your House Pass set up...</div>
-                <div class="housepass_container flex flex-col">
-                    <div class="housepass_main-content flex">
-                        <div class="housepass_img-container flex">
-                            <img class="housepass_img" src="{% static 'polls/images/profile_default.jpg' %}">
-                        </div>
-                        <div class="housepass_info-container flex flex-col">
-                            <div class="housepass_info-header flex">House Pass</div>
-                            <div class="housepass_info-access flex">⭐ VIP ⭐</div>
-                            <div class="housepass_info-badge-container">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                                <img class="housepass_badge" src="{% static 'polls/images/question.svg' %}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="housepass_footer flex">
-                        <span id="housepass_name">
-                            <span id="hp_first">First</span>
-                            "<span id="hp_alias">ALIAS</span>"
-                            <span id="hp_last">Last</span>
-                        </span>
-                    </div>
-                </div>
-                <div class="poll-choice-container flex flex-col">
-                    <div class="input-container">
-                        <label for="first_name">First Name:</label>
-                        <input id="first_name" type="text" name="first_name" placeholder="Your real first name">
-                    </div>
-                    <div class="input-container">
-                        <label for="last_name">Last Name:</label>
-                        <input id="last_name" type="text" name="last_name" placeholder="Your real last name">
-                    </div>
-                    <div class="input-container">
-                        <label for="alias">Alias:</label>
-                        <input id="alias" type="text" name="alias" placeholder="Your street name">
-                    </div>
-                </div>
+                <div class="poll-question-title">Congratulations</div>
+                <div class='poll-question'>You've been invited to one of the biggest events this side of the 412 has ever seen.  Churches? Shrubbery? FREE PARKING?? Yes, Brooklin has it all. Truly putting the "Greater" in Greater Toronto Area.<br><br>You've been assigned a House Pass, above. Please answer a few questions to get it personalized...</div>
                 <div class="btn-container">
                     <button class="btn btn-prev btn-warning">Previous</button>
                     <button class="btn btn-next btn-primary">Next</button>
@@ -74,15 +62,40 @@
             </div>
 
             <div class="poll-container">
-                <div class='poll-question'>And how about a few more obscure things...
+                <div class="poll-question-title">QUESTION 1</div>
+                <div class='poll-question'>Let's start with some basic info...
+                    <div class="poll-choice-container flex flex-col">
+                        <div class="input-container">
+                            <label for="first_name">First Name:</label>
+                            <input id="first_name" type="text" name="first_name" placeholder="Your real first name">
+                        </div>
+                        <div class="input-container">
+                            <label for="last_name">Last Name:</label>
+                            <input id="last_name" type="text" name="last_name" placeholder="Your real last name">
+                        </div>
+                        <div class="input-container">
+                            <label for="alias">Alias:</label>
+                            <input id="alias" type="text" name="alias" placeholder="Your street name">
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn btn-prev btn-warning">Previous</button>
+                        <button class="btn btn-next btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poll-container">
+                <div class="poll-question-title">QUESTION 2</div>
+                <div class='poll-question'>How about a few more personal details...
                     <div class="poll-choice-container flex flex-col">
                         <div class="input-container">
                             <label for="colorInput" class="form-label">Your Favourite Colour:</label>
-                            <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your fave colour"> 
+                            <input id="colorInput" type="color" class="form-control form-control-color" value="#563d7c" title="Choose your fave colour"> 
                         </div>
                         <div class="input-container">
                             <label for="fav_drink">Favourite Alcoholic Drink:</label>
-                            <select class="form-select" name="fav_drink">
+                            <select id="fav-drink" class="form-select" name="fav_drink">
                                 {% for drink in drinks %}
                                 <option value="{{ drink }}">{{ drink }}</option>
                                 {% endfor %}
@@ -90,7 +103,7 @@
                         </div>
                         <div class="input-container">
                             <label for="fav_animal">Spirit Animal:</label>
-                            <select class="form-select" name="fav_animal">
+                            <select id="animal" class="form-select" name="fav_animal">
                                 {% for animal in animals %}
                                 <option value="{{ animal }}">{{ animal }}</option>
                                 {% endfor %}
@@ -98,7 +111,7 @@
                         </div>
                         <div class="input-container">
                             <label for="picture">Mug Shot:</label>
-                            <input type="file" name="picture">
+                            <input id="profile-pic" type="file" name="picture">
                         </div>
                     </div>
                     <div class="btn-container">
@@ -110,6 +123,7 @@
 
             {% for question in questions %}
             <div id="{{question.id}}" class="poll-container">
+                <div class="poll-question-title">QUESTION {{question.position|add:"3"}}</div>
                 <div class='poll-question'>{{ question.q_text }}</div>
                 {% if question.image %}
                 <div class="poll-img-container">
