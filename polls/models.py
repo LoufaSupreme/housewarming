@@ -11,8 +11,7 @@ class Guest(models.Model):
     fav_color = models.CharField(max_length=20, blank=True)
     fav_drink = models.CharField(max_length=20, blank=True)
     fav_animal = models.CharField(max_length=20, blank=True)
-    email = EmailField(max_length=100, blank=True)
-    timestamp = models.DateTimeField(default=timezone.now)
+    picture = models.ImageField(blank=True)
 
     def __str__(self):
         return f'{self.id}: {self.first_name} "{self.alias}" {self.last_name}'

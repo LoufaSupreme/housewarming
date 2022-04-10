@@ -69,6 +69,31 @@ def index(request):
         "animals": ANIMAL_OPTIONS,
     })
 
+def update_guest(request):
+    if (request.method == 'POST'):
+        data = json.loads(request.body)
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        field = data.get('field')
+        value = data.get('value')
+
+        # try:
+        #     guest = Guest.objects.get(first_name=first_name, last_name=last_name)
+        # except:
+        #     guest = Guest(first_name=first_name, last_name=last_name)
+        #     guest.save()
+
+        print(first_name, last_name)
+        return HttpResponseRedirect('/')
+        
+
+def add_vote(request, choice_id):
+    if request.method == 'POST':
+        choice = Choice.objects.get(pk=choice_id)
+        question = choice.question
+        possibleChoices = question.choices.all()
+        user = request.POST['user']
+
 def create(request):
     if request.method == 'GET':
         return render(request, 'polls/create.html', {})
@@ -86,14 +111,14 @@ def create(request):
 
             options = [request.POST['option-1'],request.POST['option-2'],request.POST['option-3'],request.POST['option-4'],request.POST['option-5']]
 
-            if question is not None and question is not "":
+            if question != None and question != "":
                 question = Question(q_text=question, type=q_type, position=position)
                 if img is not None:
                     question.image = img
                 question.save()
 
                 for option in options:
-                    if option is not None and option is not "":
+                    if option != None and option != "":
                         option = Choice(question=question, choice_text=option)
                         option.save()
 

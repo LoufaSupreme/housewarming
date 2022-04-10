@@ -202,7 +202,6 @@ const addBadge = (e) => {
 const adjustFontSize = (element) => {
     const spanWidth = element.getBoundingClientRect().width
     let fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size').replace("px","");
-    console.log(fontSize)
     const parentWidth = element.parentElement.getBoundingClientRect().width
 
     if (spanWidth > parentWidth * 0.9) {
@@ -213,7 +212,53 @@ const adjustFontSize = (element) => {
     }
 
     document.documentElement.style.setProperty('--hp-footer-fs', fontSize + 'px')
+}
 
+// from Django docs - get CSRF token from cookies
+function getCookie(name) {
+    // console.log(`Getting cookie: ${name}`);
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+const addGuestInfo = async () => {
+    const csrf_token = getCookie('csrftoken')
+
+    const data = {
+        'first_name': firstName.value,
+        'last_name': lastName.value,
+        'alias': alias.value,
+        'fav_colour': favColor.value,
+        'fav_drink': favDrink.value,
+        'spirit_animal': animal.value,
+        // 'profile_pic': profilePic,
+    }
+
+    try {
+        const res = await fetch('update_guest/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { "X-CSRFToken": csrf_token}
+        })
+        const parsed = await res.json()
+        console.log('Success')
+        return parsed
+    }
+    catch(err) {
+        console.error(err)
+    }
 }
 
 firstName.addEventListener('input', updateUserInput)

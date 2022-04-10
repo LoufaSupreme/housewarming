@@ -10,8 +10,8 @@ app_name = 'polls'
 urlpatterns = [
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
-
-    # API ROUTES:
+    path('vote/<int:choice_id>', views.add_vote, name='vote'),
+    path('update_guest/', views.update_guest, name='update_guest'),
 ]
 
 # for images:
