@@ -32,7 +32,7 @@ class Question(models.Model):
     position = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.id}: {self.q_text[:20]}...'
+        return f'{self.id}: {self.q_text[:50]}...'
 
     def serialize(self):
         return {
@@ -45,6 +45,7 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
     choice_text = models.CharField(max_length=255)
     votes = models.ManyToManyField(Guest, related_name='choices', blank=True)
+    image = models.FileField(blank=True)
 
     def __str__(self):
         return f'{self.id}: {self.choice_text[:10]}... for Q{self.question}'

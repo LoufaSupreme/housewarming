@@ -27,16 +27,18 @@ body {
 }
 
 .carousel {
-    position: relative;
+    /* position: relative; */
     margin: 0 auto;
-    height: 90vh;
-    width: 90%;
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .carousel-track-container {
-    height: 100%;
+    min-height: 400px;
+    width: 100%;
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 .carousel-track {
@@ -54,9 +56,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* box-shadow: 2px 2px 6px rgba(0,0,0,0.5); */
-    border-radius: 1rem;
-    /* border: 1px solid grey; */
+    padding: 0 3rem;
 }
 
 .carousel-nav {
@@ -100,7 +100,7 @@ body {
 .poll-img-container {
     overflow: hidden;
     border-radius: 2rem;
-    max-height: min(80vh, 350px);
+    max-height: min(80vw, 350px);
     margin-top: 1rem;
 }
 
@@ -111,6 +111,10 @@ body {
     padding-bottom: min(90%, 350px);
     overflow: hidden;
     margin: 1rem 0;
+}
+
+.poll-img-container.inline {
+    max-width: min(80vw, 350px);
 }
 
 #intro-img {
@@ -129,7 +133,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0 0;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0;
 }
 
 .btn {
@@ -242,6 +246,7 @@ input[type=file] {
     gap: 0.5rem;
     /* background: yellow; */
     width: 100%;
+    height: 65%;
     padding: 0.5rem;
 }
 
@@ -249,8 +254,18 @@ input[type=file] {
     /* margin: 0.3rem; */
     background: white;
     width: 100%;
-    /* height: ; */
+    height: 100%;
+    max-height: 100%;
     border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+.housepass_badge > img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+    object-fit: cover;
 }
 
 .housepass_footer {

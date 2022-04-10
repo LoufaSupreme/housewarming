@@ -11,12 +11,12 @@ const housepass = document.querySelector('#housepass')
 const housepassName = housepass.querySelector('#housepass_name')
 const housepassImg = housepass.querySelector('.housepass_img')
 const housepassAccess = housepass.querySelector('.housepass_info-access')
-const drinkBadge = housepass.querySelector('.drink-badge')
-const animalBadge = housepass.querySelector('.animal-badge')
-const guestBadge = housepass.querySelector('.guest-badge')
-const kegBadge = housepass.querySelector('.keg-badge')
-const hottubBadge = housepass.querySelector('.hottub-badge')
-const sleepBadge = housepass.querySelector('.sleep-badge')
+const drinkBadge = housepass.querySelector('#drink-badge')
+const animalBadge = housepass.querySelector('#animal-badge')
+const guestBadge = housepass.querySelector('#guest-badge')
+const kegBadge = housepass.querySelector('#keg-badge')
+const hottubBadge = housepass.querySelector('#hottub-badge')
+const sleepBadge = housepass.querySelector('#sleep-badge')
 
 // Q1
 const firstName = document.querySelector('#first_name')
@@ -29,8 +29,76 @@ alias.displayField = document.querySelector('#hp_alias')
 // Q2
 const favColor = document.querySelector('#colorInput')
 const favDrink = document.querySelector('#fav-drink')
+favDrink.displayField = drinkBadge
 const animal = document.querySelector('#animal')
+animal.displayField = animalBadge
 const profilePic = document.querySelector('#profile-pic')
+profilePic.displayField = housepassImg
+
+// Other questions
+const radioChoices = document.querySelectorAll('input[type="radio"]')
+const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+const choiceClicked = (e) => {
+    const choice = e.target
+    const question = questionIndex.find(q => q.id === choice.dataset.question)
+    console.log(choice, question)
+    const displayField = question.displayField
+
+    if (displayField) {
+        displayField.src = choice.dataset.img
+        if (!choice.dataset.img.includes('svg')) {
+            displayField.style.transform = 'scale(1) rotateZ(0deg)'
+        }
+        if (choice.dataset.img.includes('svg')){
+            displayField.style.transform = 'scale(0.8)'
+            console.log('svg')
+        }
+        if (choice.dataset.choice === '17') {
+            displayField.style.transform = 'rotateZ(180deg)'
+        }
+    }
+}
+
+// question IDs associated with keyword
+const questionIndex = [
+    {
+        id: '1',
+        keyword: 'dates',
+        displayField: null,
+    },
+    {
+        id: '2',
+        keyword: 'hottub',
+        displayField: hottubBadge,
+    },
+    {
+        id: '3',
+        keyword: 'ceiling',
+        displayField: housepassAccess,
+    },
+    {
+        id: '4',
+        keyword: 'guests',
+        displayField: guestBadge,
+    },
+    {
+        id: '5',
+        keyword: 'kegstand',
+        displayField: kegBadge,
+    },
+    {
+        id: '6',
+        keyword: 'sleep',
+        displayField: sleepBadge,
+    },
+]
+
+
+radioChoices.forEach(choice => {
+    choice.addEventListener('click', choiceClicked)
+})
+
 
 
 // make indicator dots to indicate which slide we're on
@@ -117,9 +185,18 @@ const updateUserInput = (e) => {
     if (input.id === 'colorInput') {
         housepass.style.background = value
     }
+    else {
+        input.displayField.innerText = value;
+        adjustFontSize(housepassName)
+    }
+}
 
-    input.displayField.innerText = value;
-    adjustFontSize(housepassName)
+const addBadge = (e) => {
+    const input = e.target
+    const selectedOption = input.options[input.selectedIndex]
+    const value = input.value
+    const img = selectedOption.dataset.img
+    input.displayField.src = img
 }
 
 const adjustFontSize = (element) => {
@@ -143,3 +220,5 @@ firstName.addEventListener('input', updateUserInput)
 lastName.addEventListener('input', updateUserInput)
 alias.addEventListener('input', updateUserInput)
 favColor.addEventListener('input', updateUserInput)
+favDrink.addEventListener('input', addBadge)
+animal.addEventListener('input', addBadge)

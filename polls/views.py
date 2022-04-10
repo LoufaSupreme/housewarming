@@ -6,22 +6,57 @@ from .models import Guest, Question, Choice
 
 # Globals
 DRINK_OPTIONS = [
-    'Beer',
-    'Wine',
-    'Caesar',
-    'Moscow Mule',
-    'Scotch',
-    'Martini',
+    {
+        'drink': 'Beer',
+        'img': 'homer_beer.jpg',
+    },
+    {
+        'drink': 'Wine',
+        'img': 'wine_snob.jpg',
+    },
+    {
+        'drink': 'Caesar',
+        'img': 'caesar.jpg',
+    },
+    {
+        'drink': 'Moscow Mule',
+        'img': 'moscow.jpg',
+    },
+    {
+        'drink': 'Scotch',
+        'img': 'scotch2.jpg',
+    },
+    {
+        'drink': 'Martini',
+        'img': 'martini.jpg',
+    },
 ]
 
 ANIMAL_OPTIONS = [
-    'Fox',
-    'Capybara',
-    'Bunny',
-    'Owl',
-    'Eagle',
-    'Beaver',
-    'Mosquito',
+    {
+        'animal': 'Koala',
+        'img': 'koala.jpg'
+    },
+    {
+        'animal': 'Capybara',
+        'img': 'capybara.jpg'
+    },
+    {
+        'animal': 'Goat',
+        'img': 'goat.jpg'
+    },
+    {
+        'animal': 'Sloth',
+        'img': 'sloth.jpg'
+    },
+    {
+        'animal': 'Monkey',
+        'img': 'monkey.jpg'
+    },
+    {
+        'animal': 'Ostrich',
+        'img': 'ostrich.jpg'
+    },
 ]
 
 # Create your views here.
