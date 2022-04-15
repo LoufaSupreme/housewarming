@@ -42,7 +42,7 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]')
 const choiceClicked = (e) => {
     const choice = e.target
     const question = questionIndex.find(q => q.id === choice.dataset.question)
-    console.log(choice, question)
+    // console.log(choice, question)
     const displayField = question.displayField
 
     if (displayField) {

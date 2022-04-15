@@ -7,6 +7,10 @@ from .models import Guest, Question, Choice
 # Globals
 DRINK_OPTIONS = [
     {
+        'drink': 'Select a drink',
+        'img': 'question.svg',
+    },
+    {
         'drink': 'Beer',
         'img': 'homer_beer.jpg',
     },
@@ -33,6 +37,10 @@ DRINK_OPTIONS = [
 ]
 
 ANIMAL_OPTIONS = [
+    {
+        'animal': 'Select an animal',
+        'img': 'question.svg',
+    },
     {
         'animal': 'Koala',
         'img': 'koala.jpg'

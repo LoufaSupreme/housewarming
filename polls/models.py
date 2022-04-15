@@ -10,8 +10,9 @@ class Guest(models.Model):
     alias = models.CharField(max_length=20, blank=True)
     fav_color = models.CharField(max_length=20, blank=True)
     fav_drink = models.CharField(max_length=20, blank=True)
-    fav_animal = models.CharField(max_length=20, blank=True)
+    spirit_animal = models.CharField(max_length=20, blank=True)
     picture = models.ImageField(blank=True)
+    comment = models.CharField(max_length=140, blank=True)
 
     def __str__(self):
         return f'{self.id}: {self.first_name} "{self.alias}" {self.last_name}'
@@ -21,7 +22,11 @@ class Guest(models.Model):
             'id': self.id,
             'name': self.name,
             'alias': self.alias,
-            'email': self.email,
+            'fav_color': self.fav_color,
+            'fav_drink': self.fav_drink,
+            'spirit_animal': self.spirit_animal,
+            'picture': self.picture,
+            'comment': self.comment,            
         }
 
 class Question(models.Model):
@@ -38,6 +43,8 @@ class Question(models.Model):
             'id': self.id,
             'q_text': self.q_text,
             'type': self.type,
+            'image': self.image,
+            'position': self.position,
         }
 
 class Choice(models.Model):
@@ -54,5 +61,6 @@ class Choice(models.Model):
             'id': self.id,
             'choice_text': self.choice_text,
             'question': self.question.serialize(),
-            'votes': [{'id':guest.id, 'name':guest.name} for guest in self.votes]
+            'votes': [{'id':guest.id, 'name':guest.name} for guest in self.votes],
+            'image': self.image,
         }
