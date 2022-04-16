@@ -92,7 +92,7 @@ def upload_results(request):
         fav_color = data.get('favColor')
         fav_drink = data.get('favDrink')
         spirit_animal = data.get('animal')
-        selected_choices = data.get('selectedChoices')
+        selected_choices = data.get('answers')
         comments = data.get('comments')
 
         try:
@@ -103,24 +103,28 @@ def upload_results(request):
             guest = Guest(first_name=first_name,last_name=last_name)
             guest.save()
         
-        print(guest)
+        # print(guest, data)
         guest.alias=alias
-        guest.fav_color=fav_color,
-        guest.fav_drink=fav_drink,
-        guest.spirit_animal=spirit_animal,
+        guest.fav_color=fav_color
+        guest.fav_drink=fav_drink
+        guest.spirit_animal=spirit_animal
         guest.comment=comments
         guest.save()
 
-        print(first_name, last_name)
+        for choice in selected_choices:
+            add_vote(int(choice), guest)
+
         return JsonResponse(guest.serialize(), safe=False)
         
 
-def add_vote(user_id, choice_id):
-    if request.method == 'POST':
+def add_vote(choice_id, guest):
+    try:
         choice = Choice.objects.get(pk=choice_id)
-        question = choice.question
-        possibleChoices = question.choices.all()
-        user = request.POST['user']
+    except:
+        traceback.print_exc()
+
+    choice.votes.add(guest)
+
 
 def create(request):
     if request.method == 'GET':
