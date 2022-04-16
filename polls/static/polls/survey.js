@@ -57,6 +57,14 @@ const choiceClicked = (e) => {
         if (choice.dataset.choice === '17') {
             displayField.style.transform = 'rotateZ(180deg)'
         }
+        if (choice.dataset.choice === '12') {
+            displayField.innerText = '🚩MENACE🚩'
+            displayField.classList.add('menace')
+        }
+        if (choice.dataset.choice === '13') {
+            displayField.innerText = '⭐ VIP ⭐'
+            displayField.classList.remove('menace')
+        }
     }
 }
 
@@ -115,6 +123,15 @@ const setSlidePosition = (slide, index) => {
     slide.style.left = slideWidth * index + 'px'
 }
 
+const showHousepass = () => {
+    housepass.classList.remove('hidden')
+}
+
+const startSurvey = () => {
+    moveSlidesForward()
+    showHousepass()
+}
+
 const moveSlidesForward = () => {
     const currentSlide = track.querySelector('.current-slide')
     const targetSlide = currentSlide.nextElementSibling
@@ -142,10 +159,6 @@ const moveToSlide = (currentSlide, targetSlide) => {
     targetSlide.classList.add('current-slide')
 }
 
-const clickDots = () => {
-    
-}
-
 const updateDots = (currentDot, targetDot) => {
     currentDot.classList.remove('current-slide')
     targetDot.classList.add('current-slide')
@@ -155,7 +168,7 @@ const updateDots = (currentDot, targetDot) => {
 slides.forEach(setSlidePosition)
 
 // configure btns:
-startBtn.addEventListener('click', moveSlidesForward)
+startBtn.addEventListener('click', startSurvey)
 
 nextBtns.forEach(btn => {
     btn.addEventListener('click', moveSlidesForward)
@@ -173,10 +186,9 @@ indicatorDots.forEach(dot => {
         const targetSlide = slides[targetIndex]
         moveToSlide(currentSlide, targetSlide)
         updateDots(currentDot, targetDot)
+        showHousepass()
     })
 })
-
-// document.addEventListener('click', e => console.log(e.target))
 
 const updateUserInput = (e) => {
     const input = e.target
@@ -261,9 +273,23 @@ const addGuestInfo = async () => {
     }
 }
 
+// https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
+const addProfilePic = (e) => {
+    const input = e.target
+    console.log(input)
+    if (input.files && input.files[0]) {
+        const reader = new FileReader()
+        reader.onload = function (f) {
+            input.displayField.src = f.target.result
+        }
+        reader.readAsDataURL(input.files[0])
+    }
+}
+
 firstName.addEventListener('input', updateUserInput)
 lastName.addEventListener('input', updateUserInput)
 alias.addEventListener('input', updateUserInput)
 favColor.addEventListener('input', updateUserInput)
 favDrink.addEventListener('input', addBadge)
 animal.addEventListener('input', addBadge)
+profilePic.addEventListener('change', addProfilePic)
