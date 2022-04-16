@@ -77,25 +77,45 @@ def index(request):
         "animals": ANIMAL_OPTIONS,
     })
 
-def update_guest(request):
-    if (request.method == 'POST'):
-        data = json.loads(request.body)
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
-        field = data.get('field')
-        value = data.get('value')
+def upload_results(request):
+    if (request.method != 'POST'):
+        return JsonResponse({"error": "Post method required"}, status=400)
+    else:
+        try:
+            data = json.loads(request.body)
+        except:
+            traceback.print_exc()
 
-        # try:
-        #     guest = Guest.objects.get(first_name=first_name, last_name=last_name)
-        # except:
-        #     guest = Guest(first_name=first_name, last_name=last_name)
-        #     guest.save()
+        first_name = data.get('firstName')
+        last_name = data.get('lastName')
+        alias = data.get('alias')
+        fav_color = data.get('favColor')
+        fav_drink = data.get('favDrink')
+        spirit_animal = data.get('animal')
+        selected_choices = data.get('selectedChoices')
+        comments = data.get('comments')
+
+        try:
+            guest = Guest.objects.get(first_name=first_name, last_name=last_name)
+            print('******Existing guest found...')
+        except:
+            print('*********Creating new Guest')
+            guest = Guest(first_name=first_name,last_name=last_name)
+            guest.save()
+        
+        print(guest)
+        guest.alias=alias
+        guest.fav_color=fav_color,
+        guest.fav_drink=fav_drink,
+        guest.spirit_animal=spirit_animal,
+        guest.comment=comments
+        guest.save()
 
         print(first_name, last_name)
-        return HttpResponseRedirect('/')
+        return JsonResponse(guest.serialize(), safe=False)
         
 
-def add_vote(request, choice_id):
+def add_vote(user_id, choice_id):
     if request.method == 'POST':
         choice = Choice.objects.get(pk=choice_id)
         question = choice.question

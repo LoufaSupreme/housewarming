@@ -38,6 +38,7 @@ profilePic.displayField = housepassImg
 // Other questions
 const radioChoices = document.querySelectorAll('input[type="radio"]')
 const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+const comment = document.querySelector('#comments')
 
 const choiceClicked = (e) => {
     const choice = e.target
@@ -245,27 +246,20 @@ function getCookie(name) {
 }
 
 
-const addGuestInfo = async () => {
+const uploadResults = async (surveyResults) => {
     const csrf_token = getCookie('csrftoken')
 
-    const data = {
-        'first_name': firstName.value,
-        'last_name': lastName.value,
-        'alias': alias.value,
-        'fav_colour': favColor.value,
-        'fav_drink': favDrink.value,
-        'spirit_animal': animal.value,
-        // 'profile_pic': profilePic,
-    }
-
     try {
-        const res = await fetch('update_guest/', {
+        const res = await fetch('uploadResults/', {
             method: 'POST',
-            body: JSON.stringify(data),
-            headers: { "X-CSRFToken": csrf_token}
+            body: JSON.stringify(surveyResults),
+            headers: { "X-CSRFToken": csrf_token},
+            contentType: false,
+            processData: false,
         })
         const parsed = await res.json()
         console.log('Success')
+        console.log(parsed)
         return parsed
     }
     catch(err) {
@@ -284,6 +278,35 @@ const addProfilePic = (e) => {
         }
         reader.readAsDataURL(input.files[0])
     }
+}
+
+const collectProfilePic = () => {
+    const images = profilePic.files
+    let imageFormData = new FormData()
+    imageFormData.append('images', images.item(0))
+    if (images.length === 0) imageFormData = null
+
+    return imageFormData
+}
+
+const collectAnswers = () => {
+
+    const selectedChoices = [...radioChoices, ...checkboxes]
+        .filter(c => c.checked === true)
+        .map(c => c.dataset.choice)
+
+    const surveyResults = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        alias: alias.value,
+        favColor: favColor.value,
+        favDrink: favDrink.value,
+        animal: animal.value,
+        answers: selectedChoices,
+        comments: comments.value,
+    }
+
+    return surveyResults
 }
 
 firstName.addEventListener('input', updateUserInput)

@@ -20,12 +20,12 @@ class Guest(models.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'alias': self.alias,
             'fav_color': self.fav_color,
             'fav_drink': self.fav_drink,
             'spirit_animal': self.spirit_animal,
-            'picture': self.picture,
             'comment': self.comment,            
         }
 
