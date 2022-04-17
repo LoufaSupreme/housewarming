@@ -114,6 +114,7 @@ body {
     margin-inline: auto;
     color: darkblue;
     text-align: center;
+    text-transform: none;
 }
 
 .poll-choice-container {
