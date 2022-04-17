@@ -6,6 +6,11 @@ const previousBtns = Array.from(document.querySelectorAll('.btn-prev'))
 const dotsNav = document.querySelector('.carousel-nav')
 const indicatorDots = []
 
+// image capture
+const video = document.querySelector('#video')
+const canvas = document.querySelector('#canvas')
+const ctx = canvas.getContext('2d')
+
 // housepass
 const housepass = document.querySelector('#housepass')
 const housepassName = housepass.querySelector('#housepass_name')
@@ -39,6 +44,36 @@ profilePic.displayField = housepassImg
 const radioChoices = document.querySelectorAll('input[type="radio"]')
 const checkboxes = document.querySelectorAll('input[type="checkbox"]')
 const comment = document.querySelector('#comments')
+
+const getVideo = () => {
+    // get vid stream from webcam:
+    navigator.mediaDevices.getUserMedia( {video: true, audio: false} )
+        .then(localMediaStream => {
+            video.srcObject = localMediaStream
+            video.play()
+        })
+        .catch(err => console.error(err))
+}
+
+const paintToCanvas = () => {
+    const width = video.videoWidth
+    const height = video.videoHeight
+    canvas.width = width
+    canvas.height = height;
+
+    return setInterval(() => {
+        ctx.drawImage(video, 0, 0, width, height);
+        let pixels = ctx.getImageData(0,0,width,height)
+        ctx.putImageData(pixels, 0, 0)
+    }, 16)
+}
+
+const takePhoto = () => {
+    const data = canvas.toDataURL('image/jpeg');
+    housepassImg.src = data;
+
+    // console.log(data)
+}
 
 const choiceClicked = (e) => {
     const choice = e.target
@@ -258,8 +293,8 @@ const uploadResults = async (surveyResults) => {
             processData: false,
         })
         const parsed = await res.json()
-        if (response.error) {
-            throw `SERVER: ${response.error}`
+        if (parsed.error) {
+            throw `SERVER: ${parsed.error}`
         }
         console.log('Success')
         console.log(parsed)
@@ -296,6 +331,7 @@ const addPicture = async (imageFormData, guest_id) => {
 }
 
 // https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
+// shows picture on screen as soon as a file is uploaded to an input type=file
 const addProfilePic = (e) => {
     const input = e.target
     console.log(input)
@@ -323,6 +359,8 @@ const collectAnswers = () => {
         .filter(c => c.checked === true)
         .map(c => c.dataset.choice)
 
+    const profile_picture = housepassImg.src.includes('base64') ? housepassImg.src : null
+
     const surveyResults = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -332,6 +370,7 @@ const collectAnswers = () => {
         animal: animal.value,
         answers: selectedChoices,
         comments: comments.value,
+        profilePic: profile_picture,
     }
 
     return surveyResults
@@ -344,3 +383,4 @@ favColor.addEventListener('input', updateUserInput)
 favDrink.addEventListener('input', addBadge)
 animal.addEventListener('input', addBadge)
 profilePic.addEventListener('change', addProfilePic)
+video.addEventListener('canplay', paintToCanvas)

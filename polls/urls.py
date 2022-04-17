@@ -11,8 +11,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
     path('uploadResults/', views.upload_results, name='upload_results'),
-    path('addPicture/<int:guest_id>', views.add_picture, name='add_picture'),
 ]
 
 # for images:
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_URL)
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

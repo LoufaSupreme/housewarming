@@ -1,6 +1,8 @@
 from django.shortcuts import render
-import json, datetime, traceback
+import json, datetime, traceback, base64
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.conf import settings
+from django.core.files.base import ContentFile
 
 from .models import Guest, Question, Choice
 
@@ -94,6 +96,23 @@ def upload_results(request):
         spirit_animal = data.get('animal')
         selected_choices = data.get('answers')
         comments = data.get('comments')
+        image_base64 = data.get('profilePic')
+
+        # try:
+        #     imgdata = base64.b64decode(image_base64)
+        #     filename = f'{first_name}_{last_name}.jpg'
+        #     with open(filename, 'wb') as f:
+        #         f.write(imgdata)
+        # except:
+        #     traceback.print_exc()
+
+        # get uploaded profile pic and save it as a "content file"
+        if image_base64:
+            format, imgstr = image_base64.split(';base64,')
+            ext = format.split('/')[-1]
+            profile_pic = ContentFile(base64.b64decode(imgstr), name=f'{first_name}_({alias})_{last_name}.' + ext)
+        else:
+            profile_pic = 'profile_default.jpg'
 
         try:
             guest = Guest.objects.get(first_name=first_name, last_name=last_name)
@@ -109,6 +128,7 @@ def upload_results(request):
         guest.fav_drink=fav_drink
         guest.spirit_animal=spirit_animal
         guest.comment=comments
+        guest.picture=profile_pic
         guest.save()
 
         for choice in selected_choices:
@@ -125,9 +145,6 @@ def add_vote(choice_id, guest):
 
     choice.votes.add(guest)
 
-
-def add_picture(request, guest_id):
-    pass
 
 def create(request):
     if request.method == 'GET':

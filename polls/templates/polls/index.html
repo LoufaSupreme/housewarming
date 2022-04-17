@@ -133,9 +133,28 @@
                 </div>
             </div>
 
+            <div class="poll-container">
+                <div class="poll-question-title">QUESTION 3</div>
+                <div class='poll-question'>And finally, your mugshot.
+                    <div class="poll-choice-container flex flex-col">
+                        <div class="input-container">
+                            <video id="video" width="200" height="200"></video>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <div class="btn-container">
+                            <button id="take-photo" class="btn btn-danger">Take Photo</button>
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn btn-prev btn-warning">Previous</button>
+                        <button class="btn btn-next btn-primary">Next</button>
+                    </div>    
+                </div>
+            </div>
+
             {% for question in questions %}
             <div id="q{{question.id}}" class="poll-container">
-                <div class="poll-question-title">QUESTION {{question.position|add:"3"}}</div>
+                <div class="poll-question-title">QUESTION {{question.position|add:"4"}}</div>
                 <div class='poll-question'>{{ question.q_text }}</div>
                 {% if question.image %}
                 <div class="poll-img-container inline">
@@ -162,7 +181,7 @@
             {% endfor %}
 
             <div class="poll-container">
-                <div class="poll-question-title">QUESTION 9</div>
+                <div class="poll-question-title">QUESTION 10</div>
                 <div class='poll-question'>Is there anything else you'd like to tell the host?
                     <div class="poll-choice-container flex flex-col">
                         <div class="input-container">
