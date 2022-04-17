@@ -86,6 +86,11 @@ body {
     background: rgba(0,20,70,0.75);
 }
 
+.poll-subtitle {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 3rem;
+}
+
 .poll-question {
     padding: 0;
 }
