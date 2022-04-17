@@ -141,13 +141,6 @@ const questionIndex = [
     },
 ]
 
-
-radioChoices.forEach(choice => {
-    choice.addEventListener('click', choiceClicked)
-})
-
-
-
 // make indicator dots to indicate which slide we're on
 slides.forEach(slide => {
     const dot = document.createElement('button')
@@ -210,28 +203,7 @@ const updateDots = (currentDot, targetDot) => {
 // arrange all slides next to eachother:
 slides.forEach(setSlidePosition)
 
-// configure btns:
-startBtn.addEventListener('click', startSurvey)
-
-nextBtns.forEach(btn => {
-    btn.addEventListener('click', moveSlidesForward)
-})
-
-previousBtns.forEach(btn => btn.addEventListener('click', moveSlidesBackwards))
-
 indicatorDots[0].classList.add('current-slide')
-indicatorDots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-        const currentSlide = track.querySelector('.current-slide')
-        const currentDot = dotsNav.querySelector('.current-slide')
-        const targetDot = e.target
-        const targetIndex = indicatorDots.findIndex(dot => dot === targetDot)
-        const targetSlide = slides[targetIndex]
-        moveToSlide(currentSlide, targetSlide)
-        updateDots(currentDot, targetDot)
-        showHousepass()
-    })
-})
 
 const updateUserInput = (e) => {
     const input = e.target
@@ -392,8 +364,40 @@ const displayCanvas = () => {
 
 const submitSurvey = () => {
     results = collectAnswers();
-    uploadResults(results)
+    if (results.firstName === "") {
+        const currentSlide = track.querySelector('.current-slide')
+        const currentDot = dotsNav.querySelector('.current-slide')
+        const targetIndex = 2
+        const targetDot = indicatorDots[targetIndex]
+        const targetSlide = slides[targetIndex]
+        moveToSlide(currentSlide, targetSlide)
+        updateDots(currentDot, targetDot)
+    }
+    else {
+        uploadResults(results)
+    }
 }
+
+// event listeners:
+startBtn.addEventListener('click', startSurvey)
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', moveSlidesForward)
+})
+
+previousBtns.forEach(btn => btn.addEventListener('click', moveSlidesBackwards))
+
+indicatorDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        const currentSlide = track.querySelector('.current-slide')
+        const currentDot = dotsNav.querySelector('.current-slide')
+        const targetDot = e.target
+        const targetIndex = indicatorDots.findIndex(dot => dot === targetDot)
+        const targetSlide = slides[targetIndex]
+        moveToSlide(currentSlide, targetSlide)
+        updateDots(currentDot, targetDot)
+        showHousepass()
+    })
+})
 
 firstName.addEventListener('input', updateUserInput)
 lastName.addEventListener('input', updateUserInput)
@@ -406,3 +410,8 @@ video.addEventListener('canplay', paintToCanvas)
 addPhotoBtn.addEventListener('click', displayCanvas)
 takePhotoBtn.addEventListener('click', takePhoto)
 submitBtn.addEventListener('click', submitSurvey)
+radioChoices.forEach(choice => {
+    choice.addEventListener('click', choiceClicked)
+})
+
+
