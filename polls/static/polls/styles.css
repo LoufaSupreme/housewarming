@@ -76,8 +76,8 @@ body {
 
 .carousel-indicator {
     border-radius: 50%;
-    width: 4.5vw;
-    height: 4.5vw;
+    width: clamp(1rem, 4.5vw, 2rem);
+    height: clamp(1rem, 4.5vw, 2rem);
     background: rgba(0,20,70,0.3);
     margin: 0 0.8vw;
 }
@@ -90,10 +90,25 @@ body {
     padding: 0;
 }
 
+.poll-question > a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    color: darkblue;
+}
+
 .poll-question-title {
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 0.4rem;
+}
+
+.poll-question-title.large {
+    font-size: 3rem;
+    margin-inline: auto;
+    color: darkblue;
+    text-align: center;
 }
 
 .poll-choice-container {
@@ -313,4 +328,21 @@ input[type=file] {
     width: 100%;
     border-radius: 2rem;
     border: 2px solid black;
+    display: none;
+}
+
+#canvas.show {
+    display: block;
+}
+
+#take-photo {
+    display: none;
+}
+
+#take-photo.show {
+    display: block;
+}
+
+#add-photo.hide {
+    display: none;
 }

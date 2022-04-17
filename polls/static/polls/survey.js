@@ -3,6 +3,7 @@ const slides = Array.from(track.querySelectorAll('.poll-container'))
 const startBtn = document.querySelector('.btn-start')
 const nextBtns = Array.from(document.querySelectorAll('.btn-next'))
 const previousBtns = Array.from(document.querySelectorAll('.btn-prev'))
+const submitBtn = document.querySelector('#submit-btn')
 const dotsNav = document.querySelector('.carousel-nav')
 const indicatorDots = []
 
@@ -10,6 +11,8 @@ const indicatorDots = []
 const video = document.querySelector('#video')
 const canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
+const addPhotoBtn = document.querySelector('#add-photo')
+const takePhotoBtn = document.querySelector('#take-photo')
 
 // housepass
 const housepass = document.querySelector('#housepass')
@@ -37,8 +40,8 @@ const favDrink = document.querySelector('#fav-drink')
 favDrink.displayField = drinkBadge
 const animal = document.querySelector('#animal')
 animal.displayField = animalBadge
-const profilePic = document.querySelector('#profile-pic')
-profilePic.displayField = housepassImg
+// const profilePic = document.querySelector('#profile-pic')
+// profilePic.displayField = housepassImg
 
 // Other questions
 const radioChoices = document.querySelectorAll('input[type="radio"]')
@@ -177,6 +180,8 @@ const moveSlidesForward = () => {
     const targetDot = currentDot.nextElementSibling
     updateDots(currentDot, targetDot)
 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
 }
 
 const moveSlidesBackwards = () => {
@@ -187,6 +192,8 @@ const moveSlidesBackwards = () => {
     const currentDot = dotsNav.querySelector('.current-slide')
     const targetDot = currentDot.previousElementSibling
     updateDots(currentDot, targetDot)
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 const moveToSlide = (currentSlide, targetSlide) => {
@@ -376,11 +383,26 @@ const collectAnswers = () => {
     return surveyResults
 }
 
+const displayCanvas = () => {
+    addPhotoBtn.classList.add('hide');
+    canvas.classList.add('show');
+    takePhotoBtn.classList.add('show');
+    getVideo();
+}
+
+const submitSurvey = () => {
+    results = collectAnswers();
+    uploadResults(results)
+}
+
 firstName.addEventListener('input', updateUserInput)
 lastName.addEventListener('input', updateUserInput)
 alias.addEventListener('input', updateUserInput)
 favColor.addEventListener('input', updateUserInput)
 favDrink.addEventListener('input', addBadge)
 animal.addEventListener('input', addBadge)
-profilePic.addEventListener('change', addProfilePic)
+// profilePic.addEventListener('change', addProfilePic)
 video.addEventListener('canplay', paintToCanvas)
+addPhotoBtn.addEventListener('click', displayCanvas)
+takePhotoBtn.addEventListener('click', takePhoto)
+submitBtn.addEventListener('click', submitSurvey)
