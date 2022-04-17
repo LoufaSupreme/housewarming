@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
     path('uploadResults/', views.upload_results, name='upload_results'),
+    path('addPicture/<int:guest_id>', views.add_picture, name='add_picture'),
 ]
 
 # for images:

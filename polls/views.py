@@ -126,6 +126,9 @@ def add_vote(choice_id, guest):
     choice.votes.add(guest)
 
 
+def add_picture(request, guest_id):
+    pass
+
 def create(request):
     if request.method == 'GET':
         return render(request, 'polls/create.html', {})

@@ -258,11 +258,39 @@ const uploadResults = async (surveyResults) => {
             processData: false,
         })
         const parsed = await res.json()
+        if (response.error) {
+            throw `SERVER: ${response.error}`
+        }
         console.log('Success')
         console.log(parsed)
         return parsed
     }
     catch(err) {
+        console.error(err)
+    }
+}
+
+const addPicture = async (imageFormData, guest_id) => {
+    console.log(`Adding profile picture to Guest ${guest_id}`)
+    const csrf_token = getCookie('csrftoken')
+
+    try {
+        const res = await fetch(`addPicture/${guest_id}`, {
+            method: 'POST',
+            body: imageFormData,
+            headers: { "X-CSRFToken": csrf_token },
+            contentType: false,
+            processData:  false,
+        })
+        const response = await res.json()
+        if (response.error) {
+            throw `SERVER: ${response.error}`
+        }
+        console.log('Success')
+        console.log(response)
+        return response
+    }
+    catch {
         console.error(err)
     }
 }
