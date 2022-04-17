@@ -58,10 +58,10 @@ body {
     top: 15px;
     background: white;
     /* bottom: 0; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     /* height: 100%; */
     padding: 0 3rem;
