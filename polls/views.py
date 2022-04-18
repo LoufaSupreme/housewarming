@@ -171,8 +171,15 @@ def create(request):
         except Exception as e:
             traceback.print_exc()
 
+
 def display_housepasses(request):
-    pass
+    guests = Guest.objects.all()
+    return render(request, 'polls/housepasses.html', {
+        "guests": guests,
+        "drinks": DRINK_OPTIONS,
+        "animals": ANIMAL_OPTIONS,
+    })
+
 
 def show_results(request):
     questions = Question.objects.all()

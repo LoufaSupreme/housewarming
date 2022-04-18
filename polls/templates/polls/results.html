@@ -15,7 +15,10 @@
         {% for choice in question.choices.all %}
         <ul>
             <li class="results_choice">
-                {{ choice.choice_text }} [<span>{{ choice.votes.count }} Votes</span>]
+                {{ choice.choice_text }} 
+                {% if choice.votes.count > 0 %}
+                [<span>{{ choice.votes.count }} Votes</span>]
+                {% endif %}
                 <ol>
                     {% for vote in choice.votes.all %}
                     <li class="results_vote">

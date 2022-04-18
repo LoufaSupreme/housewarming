@@ -375,6 +375,7 @@ const submitSurvey = () => {
     }
     else {
         uploadResults(results)
+        moveSlidesForward()
     }
 }
 

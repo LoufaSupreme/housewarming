@@ -1,0 +1,66 @@
+{% extends "polls/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Housepasses
+{% endblock %}
+
+{% block body %}
+
+    {% for guest in guests %}
+
+    <div id="housepass" class="housepass_container flex flex-col" style="background-color:{{guest.fav_color}};">
+        <div class="housepass_main-content flex">
+            <div class="housepass_img-container flex">
+                <img class="housepass_img" src="{{ guest.picture.url }}">
+            </div>
+            <div class="housepass_info-container flex flex-col">
+                <div class="housepass_info-header flex">House Pass</div>
+                <div class="housepass_info-access flex                     {% if guest.is_menace %} menace {% endif %}
+                ">
+                    {% if guest.is_menace %}
+                    🚩MENACE🚩
+                    {% elif guest.is_vip %}
+                    ⭐ VIP ⭐
+                    {% else %}
+                    GUEST
+                    {% endif %}
+                </div>
+                <div class="housepass_info-badge-container">
+                    <div class="housepass_badge">
+                        <img id="drink-badge" class="housepass_badg" src="
+                        {% if guest. %}
+                        
+                        {% static 'polls/images/question.svg' %}
+                        ">
+                    </div>
+                    <div class="housepass_badge">
+                         <img id="animal-badge" class="housepass_badg" src="{% static 'polls/images/question.svg' %}">
+                    </div>
+                    <div class="housepass_badge">
+                         <img id="hottub-badge" class="housepass_badg" src="{% static 'polls/images/question.svg' %}">
+                    </div>
+                    <div class="housepass_badge">
+                         <img id="guest-badge" class="housepass_badg" src="{% static 'polls/images/question.svg' %}">
+                    </div>
+                    <div class="housepass_badge">
+                         <img id="keg-badge" class="housepass_badg" src="{% static 'polls/images/question.svg' %}">
+                    </div>                     
+                    <div class="housepass_badge">
+                         <img id="sleep-badge" class="housepass_badg" src="{% static 'polls/images/question.svg' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="housepass_footer flex">
+            <span id="housepass_name">
+                <span id="hp_first">First</span>
+                "<span id="hp_alias">ALIAS</span>"
+                <span id="hp_last">Last</span>
+            </span>
+        </div>
+    </div>
+
+    {% endfor%}
+
+{% endblock %}

@@ -17,6 +17,46 @@ class Guest(models.Model):
     def __str__(self):
         return f'{self.id}: {self.first_name} "{self.alias}" {self.last_name}'
 
+    def has_vote(self, choice_id):
+        return Choice.objects.get(pk=choice_id) in self.choices.all()
+    
+    def is_menace(self):
+        return self.has_vote(12)
+
+    def is_vip(self):
+        return self.has_vote(13)
+
+    def is_hottubbing(self):
+        return self.has_vote(10)
+
+    def is_not_hottubbing(self):
+        return self.has_vote(11)
+
+    def plus_one(self):
+        return self.has_vote(15)
+    
+    def is_solo(self):
+        return self.has_vote(14)
+
+    def many_guests(self):
+        return self.has_vote(16)
+
+    def handstand(self):
+        return self.has_vote(17)
+
+    def gargoyle(self):
+        return self.has_vote(18)
+
+    def strong(self):
+        return self.has_vote(18)
+
+    def is_sleeping(self):
+        return self.has_vote(21)
+
+    def is_leaving(self):
+        return self.has_vote(20)
+
+
     def serialize(self):
         return {
             'id': self.id,

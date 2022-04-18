@@ -369,8 +369,9 @@ input[type=file] {
 .results_question {
     font-style: italic;
     border-bottom: 1px solid grey;
-    border-top: 1px solid grey;
+    /* border-top: 1px solid grey; */
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 
