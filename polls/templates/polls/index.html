@@ -109,7 +109,7 @@
                             <label for="fav_drink">Favourite Alcoholic Drink:</label>
                             <select id="fav-drink" class="form-select" name="fav_drink">
                                 {% for drink in drinks %}
-                                <option value="{{ drink.drink }}" data-img="{% get_media_prefix %}{{ drink.img }}">{{ drink.drink }}</option>
+                                <option value="{{ drink.img }}" data-img="{% get_media_prefix %}{{ drink.img }}">{{ drink.drink }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -117,7 +117,7 @@
                             <label for="fav_animal">Spirit Animal:</label>
                             <select id="animal" class="form-select" name="fav_animal">
                                 {% for animal in animals %}
-                                <option value="{{ animal.img }}" data-img="{{ get_media_prefix }}{{ animal.img }}">{{ animal.animal }}</option>
+                                <option value="{{ animal.img }}" data-img="{% get_media_prefix %}{{ animal.img }}">{{ animal.animal }}</option>
                                 {% endfor %}
                             </select>
                         </div>

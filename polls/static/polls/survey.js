@@ -74,8 +74,21 @@ const paintToCanvas = () => {
 const takePhoto = () => {
     const data = canvas.toDataURL('image/jpeg');
     housepassImg.src = data;
+    makeAlert('Mug Captured')
+}
 
-    // console.log(data)
+const makeAlert = (content, duration = 1000) => {
+    const alertContainer = document.querySelector('.alert-container');
+    const newAlert = document.createElement('div');
+    newAlert.classList.add('alert');
+    newAlert.innerText = content;
+    alertContainer.append(newAlert)
+    newAlert.addEventListener('transitionend', () => {
+        newAlert.remove();
+    })
+    setTimeout(() => {
+        newAlert.classList.add('hide');
+    }, duration)
 }
 
 const choiceClicked = (e) => {
@@ -85,7 +98,20 @@ const choiceClicked = (e) => {
     const displayField = question.displayField
 
     if (displayField) {
-        displayField.src = choice.dataset.img
+        if (choice.dataset.choice === '12') {
+            displayField.innerText = '🚩MENACE🚩'
+            displayField.classList.add('menace')
+            makeAlert('Clearance Level Adjusted')
+        }
+        else if (choice.dataset.choice === '13') {
+            displayField.innerText = '⭐ VIP ⭐'
+            displayField.classList.remove('menace')
+            makeAlert('Clearance Level Adjusted')
+        }
+        else {
+            displayField.src = choice.dataset.img
+            makeAlert('Badge Added')    
+        }
         if (!choice.dataset.img.includes('svg')) {
             displayField.style.transform = 'scale(1) rotateZ(0deg)'
         }
@@ -95,14 +121,6 @@ const choiceClicked = (e) => {
         }
         if (choice.dataset.choice === '17') {
             displayField.style.transform = 'rotateZ(180deg)'
-        }
-        if (choice.dataset.choice === '12') {
-            displayField.innerText = '🚩MENACE🚩'
-            displayField.classList.add('menace')
-        }
-        if (choice.dataset.choice === '13') {
-            displayField.innerText = '⭐ VIP ⭐'
-            displayField.classList.remove('menace')
         }
     }
 }
@@ -211,6 +229,7 @@ const updateUserInput = (e) => {
 
     if (input.id === 'colorInput') {
         housepass.style.background = value
+        makeAlert('House Pass Enhanced')
     }
     else {
         input.displayField.innerText = value;
@@ -224,6 +243,8 @@ const addBadge = (e) => {
     const value = input.value
     const img = selectedOption.dataset.img
     input.displayField.src = img
+    console.log('Badge Added')
+    makeAlert('House Pass Enhanced')
 }
 
 const adjustFontSize = (element) => {
@@ -277,60 +298,62 @@ const uploadResults = async (surveyResults) => {
         }
         console.log('Success')
         console.log(parsed)
+        makeAlert('Survey Submitted')
         return parsed
     }
     catch(err) {
         console.error(err)
+        makeAlert('Something went wrong...')
     }
 }
 
-const addPicture = async (imageFormData, guest_id) => {
-    console.log(`Adding profile picture to Guest ${guest_id}`)
-    const csrf_token = getCookie('csrftoken')
+// const addPicture = async (imageFormData, guest_id) => {
+//     console.log(`Adding profile picture to Guest ${guest_id}`)
+//     const csrf_token = getCookie('csrftoken')
 
-    try {
-        const res = await fetch(`addPicture/${guest_id}`, {
-            method: 'POST',
-            body: imageFormData,
-            headers: { "X-CSRFToken": csrf_token },
-            contentType: false,
-            processData:  false,
-        })
-        const response = await res.json()
-        if (response.error) {
-            throw `SERVER: ${response.error}`
-        }
-        console.log('Success')
-        console.log(response)
-        return response
-    }
-    catch {
-        console.error(err)
-    }
-}
+//     try {
+//         const res = await fetch(`addPicture/${guest_id}`, {
+//             method: 'POST',
+//             body: imageFormData,
+//             headers: { "X-CSRFToken": csrf_token },
+//             contentType: false,
+//             processData:  false,
+//         })
+//         const response = await res.json()
+//         if (response.error) {
+//             throw `SERVER: ${response.error}`
+//         }
+//         console.log('Success')
+//         console.log(response)
+//         return response
+//     }
+//     catch {
+//         console.error(err)
+//     }
+// }
 
 // https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
 // shows picture on screen as soon as a file is uploaded to an input type=file
-const addProfilePic = (e) => {
-    const input = e.target
-    console.log(input)
-    if (input.files && input.files[0]) {
-        const reader = new FileReader()
-        reader.onload = function (f) {
-            input.displayField.src = f.target.result
-        }
-        reader.readAsDataURL(input.files[0])
-    }
-}
+// const addProfilePic = (e) => {
+//     const input = e.target
+//     console.log(input)
+//     if (input.files && input.files[0]) {
+//         const reader = new FileReader()
+//         reader.onload = function (f) {
+//             input.displayField.src = f.target.result
+//         }
+//         reader.readAsDataURL(input.files[0])
+//     }
+// }
 
-const collectProfilePic = () => {
-    const images = profilePic.files
-    let imageFormData = new FormData()
-    imageFormData.append('images', images.item(0))
-    if (images.length === 0) imageFormData = null
+// const collectProfilePic = () => {
+//     const images = profilePic.files
+//     let imageFormData = new FormData()
+//     imageFormData.append('images', images.item(0))
+//     if (images.length === 0) imageFormData = null
 
-    return imageFormData
-}
+//     return imageFormData
+// }
 
 const collectAnswers = () => {
 

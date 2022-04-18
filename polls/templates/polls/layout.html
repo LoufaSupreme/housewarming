@@ -21,10 +21,9 @@
     <!-- favicon (must be after title for Django) -->
     <title>{% block title %}Housewarming{% endblock %}</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'polls/images/favicon.png' %}"
-
-
 </head>
 <body>
+    <div class="alert-container"></div>
     {% block body %}
     {% endblock %}
 </body>

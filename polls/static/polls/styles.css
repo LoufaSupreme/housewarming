@@ -241,6 +241,10 @@ input[type=file] {
     padding: 0.8rem 0;
 }
 
+.housepass_container.back {
+    padding: 1.5rem 2.5rem;
+}
+
 .housepass_container.hidden {
     display: none;
 }
@@ -411,5 +415,35 @@ input[type=file] {
     list-style:circle;
     font-size: 0.8rem;
     font-weight: normal;
+}
+
+.alert-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 2vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    gap: 0.5rem;
+    z-index: 1;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0,0,0,0.86);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 250ms ease-out;
+}
+
+.alert.hide {
+    opacity: 0;
 }
 
