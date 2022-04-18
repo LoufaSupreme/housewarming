@@ -117,7 +117,7 @@
                             <label for="fav_animal">Spirit Animal:</label>
                             <select id="animal" class="form-select" name="fav_animal">
                                 {% for animal in animals %}
-                                <option value="{{ animal.animal }}" data-img="{{ get_media_prefix }}{{ animal.img }}">{{ animal.animal }}</option>
+                                <option value="{{ animal.img }}" data-img="{{ get_media_prefix }}{{ animal.img }}">{{ animal.animal }}</option>
                                 {% endfor %}
                             </select>
                         </div>

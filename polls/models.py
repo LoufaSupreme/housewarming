@@ -48,7 +48,7 @@ class Guest(models.Model):
         return self.has_vote(18)
 
     def strong(self):
-        return self.has_vote(18)
+        return self.has_vote(19)
 
     def is_sleeping(self):
         return self.has_vote(21)

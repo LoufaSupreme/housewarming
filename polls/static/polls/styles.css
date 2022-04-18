@@ -322,6 +322,18 @@ input[type=file] {
     object-fit: cover;
 }
 
+.housepass_badge > img.scale-down {
+    transform: scale(0.8);
+}
+
+.scale-down.upside-down {
+    transform: scale(0.8) rotateZ(180deg);
+}
+
+/* img[src$='.svg'] {
+    transform: scale(0.5);
+} */
+
 .housepass_footer {
     width: 100%;
     font-size: clamp(0.6rem, var(--hp-footer-fs), 1.5rem);
