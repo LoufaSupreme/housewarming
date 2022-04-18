@@ -1,0 +1,32 @@
+{% extends "polls/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+<div class="results-container">
+    {% for question in questions %}
+    <div class="results_question">
+        {{ question.q_text }}
+    </div>
+    <div class="results_choice-container">
+        {% for choice in question.choices.all %}
+        <ul>
+            <li class="results_choice">
+                {{ choice.choice_text }} [<span>{{ choice.votes.count }} Votes</span>]
+                <ol>
+                    {% for vote in choice.votes.all %}
+                    <li class="results_vote">
+                        {{ vote.first_name }} "{{ vote.alias }}" {{ vote.last_name }}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endfor %}   
+</div>
+{% endblock %}

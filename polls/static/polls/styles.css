@@ -119,6 +119,7 @@ body {
     color: darkblue;
     text-align: center;
     text-transform: none;
+    font-family: 'Beau Rivage', cursive;
 }
 
 .poll-choice-container {
@@ -356,3 +357,39 @@ input[type=file] {
 #add-photo.hide {
     display: none;
 }
+
+/* RESULTS PAGE */
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.results_question {
+    font-style: italic;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    margin-bottom: 1rem;
+}
+
+
+.results_choice-container {
+    margin-bottom: 2rem;
+}
+
+.results_choice {
+    font-weight: bold;
+}
+
+.results_choice > span {
+    color: red;
+    /* font-weight: bold; */
+}
+
+.results_vote {
+    list-style:circle;
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+

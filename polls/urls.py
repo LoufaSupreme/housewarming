@@ -11,6 +11,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
     path('uploadResults/', views.upload_results, name='upload_results'),
+    path('display_housepasses/', views.display_housepasses, name='display_housepasses'),
+    path('show_results/', views.show_results, name='show_results'),
 ]
 
 # for images:

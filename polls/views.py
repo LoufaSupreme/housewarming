@@ -98,14 +98,6 @@ def upload_results(request):
         comments = data.get('comments')
         image_base64 = data.get('profilePic')
 
-        # try:
-        #     imgdata = base64.b64decode(image_base64)
-        #     filename = f'{first_name}_{last_name}.jpg'
-        #     with open(filename, 'wb') as f:
-        #         f.write(imgdata)
-        # except:
-        #     traceback.print_exc()
-
         # get uploaded profile pic and save it as a "content file"
         if image_base64:
             format, imgstr = image_base64.split(';base64,')
@@ -179,4 +171,11 @@ def create(request):
         except Exception as e:
             traceback.print_exc()
 
+def display_housepasses(request):
+    pass
 
+def show_results(request):
+    questions = Question.objects.all()
+    return render(request, 'polls/results.html', {
+        "questions": questions,
+    })
