@@ -8,87 +8,92 @@
 {% block body %}
 
     {% for guest in guests %}
-
-    <div id="housepass" class="housepass_container flex flex-col" style="background-color:{{guest.fav_color}};">
-        <div class="housepass_main-content flex">
-            <div class="housepass_img-container flex">
-                <img class="housepass_img" src="{{ guest.picture.url }}">
+    <div class="housepass-wrapper">
+        <div id="housepass" class="housepass_container front flex flex-col" style="background-color:{{guest.fav_color}};">
+            <div class="housepass_main-content flex">
+                <div class="housepass_img-container flex">
+                    <img class="housepass_img" src="{{ guest.picture.url }}">
+                </div>
+                <div class="housepass_info-container flex flex-col">
+                    <div class="housepass_info-header flex">House Pass</div>
+                    <div class="housepass_info-access flex                     {% if guest.is_menace %} menace {% endif %}
+                    ">
+                        {% if guest.is_menace %}
+                        🚩MENACE🚩
+                        {% elif guest.is_vip %}
+                        ⭐ VIP ⭐
+                        {% else %}
+                        GUEST
+                        {% endif %}
+                    </div>
+                    <div class="housepass_info-badge-container">
+                        <div class="housepass_badge">
+                            <img id="drink-badge" src="{% get_media_prefix %}{{ guest.fav_drink }}">
+                        </div>
+                        <div class="housepass_badge">
+                            <img id="animal-badge" src="{% get_media_prefix %}{{ guest.spirit_animal }}">
+                        </div>
+                        <div class="housepass_badge">
+                            <img id="hottub-badge" src="
+                            {% if guest.is_hottubbing %}
+                                {% get_media_prefix %}hottub2_hJSS0rp.jpg
+                            {% elif guest.is_not_hottubbing %}
+                                {% get_media_prefix %}dryguy_pPa5kz8.jpg
+                            {% else %}
+                                {% static 'polls/images/question.svg' %}
+                            {% endif %}
+                            ">
+                        </div>
+                        <div class="housepass_badge">
+                            <img id="guest-badge" src="{% if guest.plus_one %}
+                                {% get_media_prefix %}plus1_Uq0Fehr.png
+                            {% elif guest.is_solo %}
+                                {% get_media_prefix %}wolf_k4yGMWm.jpg
+                            {% elif guest.many_guests %}
+                                {% get_media_prefix %}crowd_mtbSLRc.svg
+                            {% else %}
+                                {% static 'polls/images/question.svg' %}
+                            {% endif %}
+                            ">
+                        </div>
+                        <div class="housepass_badge">
+                            <img id="keg-badge" src="
+                            {% if guest.handstand %}
+                                {% get_media_prefix %}stand_Efeg0HV.svg
+                            {% elif guest.gargoyle %}
+                                {% get_media_prefix %}gargoyle_PJNXogF_4DO4w9O.svg
+                            {% elif guest.strong %}
+                                {% get_media_prefix %}muscle_bosLY8Q.svg
+                            {% else %}
+                                {% static 'polls/images/question.svg' %}
+                            {% endif %}
+                            ">
+                        </div>                     
+                        <div class="housepass_badge">
+                            <img id="sleep-badge" src="
+                            {% if guest.is_sleeping %}
+                                {% get_media_prefix %}sleep_aWrO9JG.svg
+                            {% elif guest.is_leaving %}
+                                {% get_media_prefix %}goodbye_j7B3Ait.svg
+                            {% else %}
+                                {% static 'polls/images/question.svg' %}
+                            {% endif %}
+                            ">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="housepass_info-container flex flex-col">
-                <div class="housepass_info-header flex">House Pass</div>
-                <div class="housepass_info-access flex                     {% if guest.is_menace %} menace {% endif %}
-                ">
-                    {% if guest.is_menace %}
-                    🚩MENACE🚩
-                    {% elif guest.is_vip %}
-                    ⭐ VIP ⭐
-                    {% else %}
-                    GUEST
-                    {% endif %}
-                </div>
-                <div class="housepass_info-badge-container">
-                    <div class="housepass_badge">
-                        <img id="drink-badge" src="{% get_media_prefix %}{{ guest.fav_drink }}">
-                    </div>
-                    <div class="housepass_badge">
-                         <img id="animal-badge" src="{% get_media_prefix %}{{ guest.spirit_animal }}">
-                    </div>
-                    <div class="housepass_badge">
-                        <img id="hottub-badge" src="
-                        {% if guest.is_hottubbing %}
-                            {% get_media_prefix %}hottub_JrQKxEO.jpg
-                        {% elif guest.is_not_hottubbing %}
-                            {% get_media_prefix %}dryguy_pPa5kz8.jpg
-                        {% else %}
-                            {% static 'polls/images/question.svg' %}
-                        {% endif %}
-                        ">
-                    </div>
-                    <div class="housepass_badge">
-                        <img id="guest-badge" src="{% if guest.plus_one %}
-                            {% get_media_prefix %}plus1_Uq0Fehr.png
-                        {% elif guest.is_solo %}
-                            {% get_media_prefix %}wolf_k4yGMWm.jpg
-                        {% elif guest.many_guests %}
-                            {% get_media_prefix %}crowd_mtbSLRc.svg
-                        {% else %}
-                            {% static 'polls/images/question.svg' %}
-                        {% endif %}
-                        ">
-                    </div>
-                    <div class="housepass_badge">
-                        <img id="keg-badge" src="
-                        {% if guest.handstand %}
-                            {% get_media_prefix %}stand_Efeg0HV.svg
-                        {% elif guest.gargoyle %}
-                            {% get_media_prefix %}gargoyle_PJNXogF_4DO4w9O.svg
-                        {% elif guest.strong %}
-                            {% get_media_prefix %}muscle_bosLY8Q.svg
-                        {% else %}
-                            {% static 'polls/images/question.svg' %}
-                        {% endif %}
-                         ">
-                    </div>                     
-                    <div class="housepass_badge">
-                         <img id="sleep-badge" src="
-                         {% if guest.is_sleeping %}
-                            {% get_media_prefix %}sleep_aWrO9JG.svg
-                        {% elif guest.is_leaving %}
-                            {% get_media_prefix %}goodbye_j7B3Ait.svg
-                        {% else %}
-                            {% static 'polls/images/question.svg' %}
-                        {% endif %}
-                         ">
-                    </div>
-                </div>
+            <div class="housepass_footer flex">
+                <span id="housepass_name">
+                    <span id="hp_first">{{ guest.first_name }}</span>
+                    "<span id="hp_alias">{{ guest.alias }}</span>"
+                    <span id="hp_last">{{ guest.last_name }}</span>
+                </span>
             </div>
         </div>
-        <div class="housepass_footer flex">
-            <span id="housepass_name">
-                <span id="hp_first">{{ guest.first_name }}</span>
-                "<span id="hp_alias">{{ guest.alias }}</span>"
-                <span id="hp_last">{{ guest.last_name }}</span>
-            </span>
+
+        <div id="housepass" class="housepass_container back flex flex-col" style="background-color:{{guest.fav_color}};">
+            {{ guest.comment }}
         </div>
     </div>
 

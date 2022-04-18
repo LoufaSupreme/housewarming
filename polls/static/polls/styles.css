@@ -223,6 +223,12 @@ input[type=file] {
     padding: 0 1rem 0 0.4rem;
 }
 
+.housepass-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .housepass_container {
     width: min(90vw, 400px);
     height: calc(min(90vw, 400px) / 1.6);
@@ -252,6 +258,7 @@ input[type=file] {
     border-radius: 50%;
     overflow: hidden;
     margin-left: 1rem;
+    /* border: 2px solid black; */
     /* background: green; */
 }
 
@@ -310,7 +317,7 @@ input[type=file] {
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid grey;
+    border: 1px solid white;
 }
 
 .housepass_badge > img {
@@ -326,7 +333,7 @@ input[type=file] {
     transform: scale(0.8);
 }
 
-.scale-down.upside-down {
+.housepass_badge > img.scale-down.upside-down {
     transform: scale(0.8) rotateZ(180deg);
 }
 
