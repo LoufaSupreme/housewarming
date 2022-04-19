@@ -305,7 +305,7 @@ const uploadResults = async (surveyResults) => {
             processData: false,
         })
         console.log(res)
-        console.log(res.text())
+        // console.log(res.text())
         const parsed = await res.json()
         if (parsed.error) {
             throw `SERVER: ${parsed.error}`
@@ -317,9 +317,9 @@ const uploadResults = async (surveyResults) => {
     }
     catch(err) {
         console.error(err)
-        console.log(parsed)
         makeAlert('Something went wrong...')
         makeAlert(err)
+        console.log(parsed)
     }
 }
 
