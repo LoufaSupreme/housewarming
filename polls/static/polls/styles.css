@@ -283,7 +283,7 @@ input[type=file] {
 
 .housepass_info-header {
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: 0.3rem;
     width: 100%;
     border-bottom: 1px solid grey;
@@ -293,13 +293,13 @@ input[type=file] {
 .housepass_info-access {
     width: 100%;
     font-weight: bold;
-    font-size: clamp(1.2rem, 20vw, 1.8rem);
+    font-size: clamp(1.2rem, 20vw, 1.4rem);
     margin: -0.3rem 0 0.3rem 0;
     letter-spacing: 0.5rem;
 }
 
 .housepass_info-access.menace {
-    font-size: clamp(0.82rem, 20vw, 1.3rem);
+    font-size: clamp(0.82rem, 20vw, 1.1rem);
     letter-spacing: 0.4rem;
     margin: -0.2rem 0 0.3rem 0;
 }

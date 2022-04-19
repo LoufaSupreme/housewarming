@@ -293,6 +293,7 @@ function getCookie(name) {
 
 
 const uploadResults = async (surveyResults) => {
+    console.log('Uploading Results...')
     const csrf_token = getCookie('csrftoken')
 
     try {
@@ -303,6 +304,8 @@ const uploadResults = async (surveyResults) => {
             contentType: false,
             processData: false,
         })
+        console.log(res)
+        console.log(res.text())
         const parsed = await res.json()
         if (parsed.error) {
             throw `SERVER: ${parsed.error}`
