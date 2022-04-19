@@ -357,14 +357,24 @@ input[type=file] {
 }
 
 #video {
+    /* display: none; */
+    width: 100%;
+    min-width: 300px;
+    border-radius: 2rem;
+    border: 2px solid black;
     display: none;
 }
 
 #canvas {
     width: 100%;
+    min-width: 300px;
     border-radius: 2rem;
     border: 2px solid black;
     display: none;
+}
+
+#video.show {
+    display: block;
 }
 
 #canvas.show {
@@ -452,6 +462,6 @@ input[type=file] {
 footer {
     color: rgba(0,0,0,1);
     font-size: clamp(0.5rem, 1.4vmin, 0.8rem);
-    position: fixed;
-    bottom: 0.7rem;
+    /* position: fixed; */
+    padding-bottom: 1rem;
 }

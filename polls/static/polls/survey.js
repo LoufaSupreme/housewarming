@@ -58,6 +58,13 @@ const getVideo = () => {
         .catch(err => console.error(err))
 }
 
+const displayCanvas = () => {
+    addPhotoBtn.classList.add('hide');
+    video.classList.add('show');
+    takePhotoBtn.classList.add('show');
+    getVideo();
+}
+
 const paintToCanvas = () => {
     const width = video.videoWidth
     const height = video.videoHeight
@@ -377,13 +384,6 @@ const collectAnswers = () => {
     }
 
     return surveyResults
-}
-
-const displayCanvas = () => {
-    addPhotoBtn.classList.add('hide');
-    canvas.classList.add('show');
-    takePhotoBtn.classList.add('show');
-    getVideo();
 }
 
 const submitSurvey = () => {
