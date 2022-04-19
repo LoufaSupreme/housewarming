@@ -314,6 +314,7 @@ const uploadResults = async (surveyResults) => {
     }
     catch(err) {
         console.error(err)
+        console.log(parsed)
         makeAlert('Something went wrong...')
         makeAlert(err)
     }
@@ -387,6 +388,8 @@ const collectAnswers = () => {
         profilePic: profile_picture,
     }
 
+    console.log('Collected results:')
+    console.log(surveyResults)
     return surveyResults
 }
 
