@@ -159,7 +159,7 @@
                 <div class='poll-question'>{{ question.q_text }}
                     {% if question.image %}
                     <div class="poll-img-container inline">
-                        <img class="poll-img" src="/static/polls/images/{{ question.image }}">
+                        <img class="poll-img" src="{{ question.image.url }}">
                     </div>
                     {% endif %}
                     <div class="poll-choice-container flex flex-col">
@@ -168,7 +168,7 @@
                             {% if question.type == 'checkbox' %}
                             <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}">
                             {% else %}
-                            <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}" data-img="/static/polls/images/{{choice.image}}">
+                            <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}" data-img="{% get_media_prefix %}{{choice.image}}">
                             {% endif %}
                             <label for="{{choice.id}}">{{choice.choice_text}}</label>
                         </div>

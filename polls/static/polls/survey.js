@@ -98,12 +98,12 @@ const choiceClicked = (e) => {
     const displayField = question.displayField
 
     if (displayField) {
-        if (choice.dataset.choice === '12') {
+        if (choice.dataset.choice === '7') {
             displayField.innerText = '🚩MENACE🚩'
             displayField.classList.add('menace')
             makeAlert('Clearance Level Adjusted')
         }
-        else if (choice.dataset.choice === '13') {
+        else if (choice.dataset.choice === '8') {
             displayField.innerText = '⭐ VIP ⭐'
             displayField.classList.remove('menace')
             makeAlert('Clearance Level Adjusted')
@@ -119,7 +119,7 @@ const choiceClicked = (e) => {
             displayField.style.transform = 'scale(0.8)'
             console.log('svg')
         }
-        if (choice.dataset.choice === '17') {
+        if (choice.dataset.choice === '12') {
             displayField.style.transform = 'rotateZ(180deg)'
         }
     }
@@ -245,7 +245,7 @@ const addBadge = (e) => {
     const img = selectedOption.dataset.img
     input.displayField.src = img
     console.log('Badge Added')
-    makeAlert('House Pass Enhanced')
+    makeAlert('Badge Added')
 }
 
 const adjustFontSize = (element) => {
