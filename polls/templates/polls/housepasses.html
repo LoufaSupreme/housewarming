@@ -16,8 +16,7 @@
                 </div>
                 <div class="housepass_info-container flex flex-col">
                     <div class="housepass_info-header flex">House Pass</div>
-                    <div class="housepass_info-access flex                     {% if guest.is_menace %} menace {% endif %}
-                    ">
+                    <div class="housepass_info-access flex {% if guest.is_menace %} menace {% endif %}">
                         {% if guest.is_menace %}
                         🚩MENACE🚩
                         {% elif guest.is_vip %}
