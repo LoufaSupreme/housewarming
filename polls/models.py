@@ -18,7 +18,11 @@ class Guest(models.Model):
         return f'{self.id}: {self.first_name} "{self.alias}" {self.last_name}'
 
     def has_vote(self, choice_id):
-        return Choice.objects.get(pk=choice_id) in self.choices.all()
+        choice = Choice.objects.get(pk=choice_id);
+        if choice in self.choices.all():
+            return choice
+        else:
+            return False
     
     def is_menace(self):
         return self.has_vote(12)

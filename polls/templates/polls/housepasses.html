@@ -35,9 +35,9 @@
                         <div class="housepass_badge">
                             <img id="hottub-badge" src="
                             {% if guest.is_hottubbing %}
-                                {% get_media_prefix %}hottub2_hJSS0rp.jpg
+                                {{ guest.is_hottubbing.image.url }}
                             {% elif guest.is_not_hottubbing %}
-                                {% get_media_prefix %}dryguy_pPa5kz8.jpg
+                            {{ guest.is_not_hottubbing.image.url }}
                             {% else %}
                                 {% static 'polls/images/question.svg' %}
                             {% endif %}

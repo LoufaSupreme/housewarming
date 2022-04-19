@@ -80,6 +80,7 @@ def index(request):
         "animals": ANIMAL_OPTIONS,
     })
 
+# note: API views must be CSRF exempt for MOBILE to work...
 @csrf_exempt
 def upload_results(request):
     if (request.method != 'POST'):
