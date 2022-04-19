@@ -85,48 +85,54 @@ def upload_results(request):
     else:
         try:
             data = json.loads(request.body)
-        except:
+        except Exception as e:
             traceback.print_exc()
-
-        first_name = data.get('firstName')
-        last_name = data.get('lastName')
-        alias = data.get('alias')
-        fav_color = data.get('favColor')
-        fav_drink = data.get('favDrink')
-        spirit_animal = data.get('animal')
-        selected_choices = data.get('answers')
-        comments = data.get('comments')
-        image_base64 = data.get('profilePic')
-
-        # get uploaded profile pic and save it as a "content file"
-        if image_base64:
-            format, imgstr = image_base64.split(';base64,')
-            ext = format.split('/')[-1]
-            profile_pic = ContentFile(base64.b64decode(imgstr), name=f'{first_name}_({alias})_{last_name}.' + ext)
-        else:
-            profile_pic = 'profile_default.jpg'
+            return JsonResponse({"error": e}, status=400)
 
         try:
-            guest = Guest.objects.get(first_name=first_name, last_name=last_name)
-            print('******Existing guest found...')
-        except:
-            print('*********Creating new Guest')
-            guest = Guest(first_name=first_name,last_name=last_name)
+            first_name = data.get('firstName')
+            last_name = data.get('lastName')
+            alias = data.get('alias')
+            fav_color = data.get('favColor')
+            fav_drink = data.get('favDrink')
+            spirit_animal = data.get('animal')
+            selected_choices = data.get('answers')
+            comments = data.get('comments')
+            image_base64 = data.get('profilePic')
+
+            # get uploaded profile pic and save it as a "content file"
+            if image_base64:
+                format, imgstr = image_base64.split(';base64,')
+                ext = format.split('/')[-1]
+                profile_pic = ContentFile(base64.b64decode(imgstr), name=f'{first_name}_({alias})_{last_name}.' + ext)
+            else:
+                profile_pic = 'profile_default.jpg'
+
+            try:
+                guest = Guest.objects.get(first_name=first_name, last_name=last_name)
+                print('******Existing guest found...')
+            except:
+                print('*********Creating new Guest')
+                guest = Guest(first_name=first_name,last_name=last_name)
+                guest.save()
+            
+            # print(guest, data)
+            guest.alias=alias
+            guest.fav_color=fav_color
+            guest.fav_drink=fav_drink
+            guest.spirit_animal=spirit_animal
+            guest.comment=comments
+            guest.picture=profile_pic
             guest.save()
+
+            for choice in selected_choices:
+                add_vote(int(choice), guest)
+
+            return JsonResponse(guest.serialize(), safe=False)
         
-        # print(guest, data)
-        guest.alias=alias
-        guest.fav_color=fav_color
-        guest.fav_drink=fav_drink
-        guest.spirit_animal=spirit_animal
-        guest.comment=comments
-        guest.picture=profile_pic
-        guest.save()
-
-        for choice in selected_choices:
-            add_vote(int(choice), guest)
-
-        return JsonResponse(guest.serialize(), safe=False)
+        except Exception as e:
+            traceback.print_exc()
+            return JsonResponse({"error": e}, status=400)
         
 
 def add_vote(choice_id, guest):

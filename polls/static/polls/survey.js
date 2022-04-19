@@ -315,6 +315,7 @@ const uploadResults = async (surveyResults) => {
     catch(err) {
         console.error(err)
         makeAlert('Something went wrong...')
+        makeAlert(err)
     }
 }
 

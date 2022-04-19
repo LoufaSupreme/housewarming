@@ -66,7 +66,7 @@ class Guest(models.Model):
             'fav_color': self.fav_color,
             'fav_drink': self.fav_drink,
             'spirit_animal': self.spirit_animal,
-            'comment': self.comment,            
+            'comment': self.comment          
         }
 
 class Question(models.Model):
