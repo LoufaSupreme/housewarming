@@ -25,40 +25,40 @@ class Guest(models.Model):
             return False
     
     def is_menace(self):
-        return self.has_vote(12)
+        return self.has_vote(7)
 
     def is_vip(self):
-        return self.has_vote(13)
+        return self.has_vote(8)
 
     def is_hottubbing(self):
-        return self.has_vote(10)
+        return self.has_vote(6)
 
     def is_not_hottubbing(self):
-        return self.has_vote(11)
+        return self.has_vote(5)
 
     def plus_one(self):
-        return self.has_vote(15)
+        return self.has_vote(10)
     
     def is_solo(self):
-        return self.has_vote(14)
+        return self.has_vote(9)
 
     def many_guests(self):
-        return self.has_vote(16)
+        return self.has_vote(11)
 
     def handstand(self):
-        return self.has_vote(17)
+        return self.has_vote(12)
 
     def gargoyle(self):
-        return self.has_vote(18)
+        return self.has_vote(13)
 
     def strong(self):
-        return self.has_vote(19)
+        return self.has_vote(14)
 
     def is_sleeping(self):
-        return self.has_vote(21)
+        return self.has_vote(16)
 
     def is_leaving(self):
-        return self.has_vote(20)
+        return self.has_vote(15)
 
 
     def serialize(self):
