@@ -388,7 +388,7 @@ const collectAnswers = () => {
         animal: animal.value,
         answers: selectedChoices,
         comments: comments.value,
-        profilePic: profile_picture,
+        profilePic: profile_picture
     }
 
     console.log('Collected results:')
