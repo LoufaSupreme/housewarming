@@ -63,17 +63,16 @@ const getVideo = () => {
 
 const displayCanvas = () => {
     addPhotoBtn.classList.add('hide');
-    video.classList.add('show');
+    canvas.classList.add('show');
     takePhotoBtn.classList.add('show');
     getVideo();
 }
 
 const paintToCanvas = () => {
-    // const width = video.videoWidth
-    // const height = video.videoHeight
-    // canvas.width = width
-    // canvas.height = height;
-
+    const width = video.videoWidth
+    const height = video.videoHeight
+    canvas.width = width
+    canvas.height = height;
 
     return setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
