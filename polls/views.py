@@ -3,6 +3,7 @@ import json, datetime, traceback, base64
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Guest, Question, Choice
 
@@ -79,6 +80,7 @@ def index(request):
         "animals": ANIMAL_OPTIONS,
     })
 
+@csrf_exempt
 def upload_results(request):
     if (request.method != 'POST'):
         return JsonResponse({"error": "Post method required"}, status=400)
