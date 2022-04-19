@@ -77,7 +77,7 @@ const takePhoto = () => {
     makeAlert('Mug Captured')
 }
 
-const makeAlert = (content, duration = 1000) => {
+const makeAlert = (content, duration = 1500) => {
     const alertContainer = document.querySelector('.alert-container');
     const newAlert = document.createElement('div');
     newAlert.classList.add('alert');
@@ -163,6 +163,7 @@ const questionIndex = [
 slides.forEach(slide => {
     const dot = document.createElement('button')
     dot.classList.add('carousel-indicator')
+    // dot.disabled = true;
     dotsNav.appendChild(dot)
     indicatorDots.push(dot)
 })
@@ -395,6 +396,7 @@ const submitSurvey = () => {
         const targetSlide = slides[targetIndex]
         moveToSlide(currentSlide, targetSlide)
         updateDots(currentDot, targetDot)
+        makeAlert('Please input your name')
     }
     else {
         uploadResults(results)
@@ -410,6 +412,7 @@ nextBtns.forEach(btn => {
 
 previousBtns.forEach(btn => btn.addEventListener('click', moveSlidesBackwards))
 
+// navigate via the top dots:
 indicatorDots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         const currentSlide = track.querySelector('.current-slide')
