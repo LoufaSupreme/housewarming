@@ -53,6 +53,9 @@ const getVideo = () => {
     navigator.mediaDevices.getUserMedia( {video: true, audio: false} )
         .then(localMediaStream => {
             video.srcObject = localMediaStream
+            video.setAttribute('autoplay', "")
+            video.setAttribute('muted', "")
+            video.setAttribute('playsinline', "")
             video.play()
         })
         .catch(err => console.error(err))
@@ -66,10 +69,11 @@ const displayCanvas = () => {
 }
 
 const paintToCanvas = () => {
-    const width = video.videoWidth
-    const height = video.videoHeight
-    canvas.width = width
-    canvas.height = height;
+    // const width = video.videoWidth
+    // const height = video.videoHeight
+    // canvas.width = width
+    // canvas.height = height;
+
 
     return setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
