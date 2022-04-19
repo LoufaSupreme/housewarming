@@ -168,7 +168,7 @@
                             {% if question.type == 'checkbox' %}
                             <input class="form-check-input" type="checkbox" value="{{choice.choice_text}}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}">
                             {% else %}
-                            <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}" data-img="{{choice.image.url}}">
+                            <input class="form-check-input" type="radio" value="{{ choice.choice_text }}" id="{{ choice.id }}" name="q{{question.id}}" data-question="{{question.id}}" data-choice="{{choice.id}}" {% if choice.image %}data-img="{{choice.image.url}}"{% endif %}>
                             {% endif %}
                             <label for="{{choice.id}}">{{choice.choice_text}}</label>
                         </div>
