@@ -1,6 +1,8 @@
 # HOUSEWARMING
 A survey app to gather info about friends' availability and preferences.
 
+Live at: https://housewarming-bonanza.herokuapp.com
+
 ### Weird Stuff I Learned
 - "overflow*x: hidden" does not work on the body or html element on mobile browsers... has to be on a div inside of them.
 - the `@csrf-exempt` decorator needs to be above any API view function for mobile to work.  Mobile browsers do not use the CSRF token properly. If you don't make it exempt you will get a cryptic "string did not match expected pattern" error on fetch requests that makes literally no sense at all. 
