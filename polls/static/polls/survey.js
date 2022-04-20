@@ -308,7 +308,7 @@ const uploadResults = async (surveyResults) => {
         // console.log(res.text())
         const parsed = await res.json()
         if (parsed.error) {
-            console.log('The was an error from the server')
+            console.log('There was an error from the server')
             throw `SERVER: ${parsed.error}`
         }
         console.log('Success')
