@@ -155,7 +155,7 @@
 
             {% for question in questions %}
             <div id="q{{question.id}}" class="poll-container">
-                <div class="poll-question-title">QUESTION {{question.position|add:"4"}}</div>
+                <div class="poll-question-title">QUESTION {{question.position|add:"3"}}</div>
                 <div class='poll-question'>{{ question.q_text }}
                     {% if question.image %}
                     <div class="poll-img-container inline">
