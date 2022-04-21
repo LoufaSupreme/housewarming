@@ -245,12 +245,14 @@ input[type=file] {
 }
 
 .housepass_container.front {
-    width: min(90vw, 410px);
+    width: min(90vw, 450px);
+    height: calc(min(90vw, 450px) / 1.6);
 }
 
 .housepass_container.back {
     padding: 1.5rem 2.5rem;
-    width: min(90vw, 410px);
+    width: min(90vw, 450px);
+    height: calc(min(90vw, 450px) / 1.6);
 }
 
 .housepass_container.hidden {
@@ -274,7 +276,6 @@ input[type=file] {
     /* background: green; */
 }
 
-
 .housepass_info-container {
     width: 50%;
     height: 100%;
@@ -296,6 +297,10 @@ input[type=file] {
     /* background: grey; */
 }
 
+.housepass_info-header.front {
+    font-size: 1.5rem;
+}
+
 .housepass_info-access {
     width: 100%;
     font-weight: bold;
@@ -304,10 +309,18 @@ input[type=file] {
     letter-spacing: 0.5rem;
 }
 
+.housepass_info-access.front {
+    font-size: clamp(1.2rem, 20vw, 1.6rem);
+}
+
 .housepass_info-access.menace {
     font-size: clamp(0.82rem, 20vw, 1.1rem);
     letter-spacing: 0.4rem;
     margin: -0.2rem 0 0.3rem 0;
+}
+
+.housepass_info-access.front.menace {
+    font-size: clamp(1.2rem, 20vw, 1.3rem);
 }
 
 .housepass_info-badge-container {
