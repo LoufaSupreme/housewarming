@@ -24,7 +24,7 @@
                 <ol>
                     {% for vote in choice.votes.all %}
                     <li class="results_vote">
-                        {{ vote.first_name }} "{{ vote.alias }}" {{ vote.last_name }}{% if guest.plus_one %}(+1){% endif %}
+                        {{ vote.first_name }} "{{ vote.alias }}" {{ vote.last_name }}{% if guest.plus_one %} (+1){% endif %}
                     </li>
                     {% endfor %}
                     <div class="results_vote">
@@ -33,7 +33,7 @@
                             <b>Missing [{{ guests.all.count|subtract:choice.votes.count }}]: </b> 
                             {% for guest in guests %}
                                 {% if guest not in choice.votes.all %}
-                                    {{ guest.first_name }} {{ guest.last_name }}{% if guest.plus_one %}(+1){% endif %}, 
+                                    {{ guest.first_name }} {{ guest.last_name }}{% if guest.plus_one %} (+1){% endif %}, 
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
