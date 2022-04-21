@@ -244,8 +244,13 @@ input[type=file] {
     padding: 0.8rem 0;
 }
 
+.housepass_container.front {
+    width: min(90vw, 410px);
+}
+
 .housepass_container.back {
     padding: 1.5rem 2.5rem;
+    width: min(90vw, 410px);
 }
 
 .housepass_container.hidden {

@@ -4,7 +4,7 @@ A survey app to gather info about friends' availability and preferences.
 Live at: https://housewarming-bonanza.herokuapp.com
 
 ### Weird Stuff I Learned
-- "overflow*x: hidden" does not work on the body or html element on mobile browsers... has to be on a div inside of them.
+- "overflow-x: hidden" does not work on the body or html element on mobile browsers... has to be on a div inside of them.
 - the `@csrf-exempt` decorator needs to be above any API view function for mobile to work.  Mobile browsers do not use the CSRF token properly. If you don't make it exempt you will get a cryptic "string did not match expected pattern" error on fetch requests that makes literally no sense at all. 
 - changing the "SECRET_KEY" in Django's settings to a random string of letters does not seem to work, and will trigger an error when trying to deploy to Heroku.  The error will be about "collectstatic" failing, however it has nothing to do with that and is because there's an issue with the Secret Key.
 - viewing images is really annoying. There are `{% get_media_prefix %}` methods that can help.  The best thing to do is upload all images into an ImageField or FileField in a Django Model, and then reference them with `{{ model.img.url }}`.  This seems to be the most robust way across different ways of serving images (AWS S3, local development, etc).

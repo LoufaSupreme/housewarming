@@ -1,5 +1,7 @@
 {% extends "polls/layout.html" %}
 {% load static %}
+<!-- polls_extras is in templatetags folder and holds custom django filters -->
+{% load polls_extras %}
 
 {% block title %}
     Results
@@ -25,6 +27,17 @@
                         {{ vote.first_name }} "{{ vote.alias }}" {{ vote.last_name }}
                     </li>
                     {% endfor %}
+                    <div class="results_vote">
+                        {% if choice.votes.count > 0 %}
+                            <!-- note: |subtract is a custom django filter added to templatetags folder -->
+                            <b>Missing [{{ guests.all.count|subtract:choice.votes.count }}]: </b> 
+                            {% for guest in guests %}
+                                {% if guest not in choice.votes.all %}
+                                    {{ guest.first_name }} {{ guest.last_name }}, 
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </ol>
             </li>
         </ul>
