@@ -108,12 +108,12 @@ const choiceClicked = (e) => {
     const displayField = question.displayField
 
     if (displayField) {
-        if (choice.dataset.choice === '7') {
+        if (choice.value.includes("gotta bust")) {
             displayField.innerText = '🚩MENACE🚩'
             displayField.classList.add('menace')
             makeAlert('Clearance Level Adjusted')
         }
-        else if (choice.dataset.choice === '8') {
+        else if (choice.value.includes('sacrosanct')) {
             displayField.innerText = '⭐ VIP ⭐'
             displayField.classList.remove('menace')
             makeAlert('Clearance Level Adjusted')
@@ -129,7 +129,7 @@ const choiceClicked = (e) => {
             displayField.style.transform = 'scale(0.8)'
             console.log('svg')
         }
-        if (choice.dataset.choice === '12') {
+        if (choice.value.includes('Handstand')) {
             displayField.style.transform = 'rotateZ(180deg)'
         }
     }

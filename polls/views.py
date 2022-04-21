@@ -103,6 +103,10 @@ def upload_results(request):
             comments = data.get('comments')
             image_base64 = data.get('profilePic')
 
+            # check comment length
+            if len(comments) > 140:
+                comments = f'{comments[:140]}...'
+
             # get uploaded profile pic and save it as a "content file"
             if image_base64:
                 format, imgstr = image_base64.split(';base64,')
