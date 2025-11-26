@@ -87,7 +87,7 @@ const takePhoto = () => {
     makeAlert('Mug Captured')
 }
 
-const makeAlert = (content, duration = 1500) => {
+const makeAlert = (content, duration = 2000) => {
     const alertContainer = document.querySelector('.alert-container');
     const newAlert = document.createElement('div');
     newAlert.classList.add('alert');
@@ -234,13 +234,23 @@ slides.forEach(setSlidePosition)
 
 indicatorDots[0].classList.add('current-slide')
 
+function debounce(fn, delay) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+    };
+}
+
+const debouncedMakeAlert = debounce(makeAlert, 1000);
+
 const updateUserInput = (e) => {
     const input = e.target
     const value = input.value
 
     if (input.id === 'colorInput') {
         housepass.style.background = value
-        makeAlert('House Pass Enhanced')
+        debouncedMakeAlert('House Pass Enhanced')
     }
     else {
         input.displayField.innerText = value;
