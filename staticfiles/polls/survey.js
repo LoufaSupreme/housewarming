@@ -53,9 +53,19 @@ const getVideo = () => {
     navigator.mediaDevices.getUserMedia( {video: true, audio: false} )
         .then(localMediaStream => {
             video.srcObject = localMediaStream
+            video.setAttribute('autoplay', "")
+            video.setAttribute('muted', "")
+            video.setAttribute('playsinline', "")
             video.play()
         })
         .catch(err => console.error(err))
+}
+
+const displayCanvas = () => {
+    addPhotoBtn.classList.add('hide');
+    canvas.classList.add('show');
+    takePhotoBtn.classList.add('show');
+    getVideo();
 }
 
 const paintToCanvas = () => {
@@ -77,7 +87,7 @@ const takePhoto = () => {
     makeAlert('Mug Captured')
 }
 
-const makeAlert = (content, duration = 1500) => {
+const makeAlert = (content, duration = 2000) => {
     const alertContainer = document.querySelector('.alert-container');
     const newAlert = document.createElement('div');
     newAlert.classList.add('alert');
@@ -98,12 +108,12 @@ const choiceClicked = (e) => {
     const displayField = question.displayField
 
     if (displayField) {
-        if (choice.dataset.choice === '12') {
+        if (choice.value.includes("gotta bust")) {
             displayField.innerText = '🚩MENACE🚩'
             displayField.classList.add('menace')
             makeAlert('Clearance Level Adjusted')
         }
-        else if (choice.dataset.choice === '13') {
+        else if (choice.value.includes('sacrosanct')) {
             displayField.innerText = '⭐ VIP ⭐'
             displayField.classList.remove('menace')
             makeAlert('Clearance Level Adjusted')
@@ -119,7 +129,7 @@ const choiceClicked = (e) => {
             displayField.style.transform = 'scale(0.8)'
             console.log('svg')
         }
-        if (choice.dataset.choice === '17') {
+        if (choice.value.includes('Handstand')) {
             displayField.style.transform = 'rotateZ(180deg)'
         }
     }
@@ -224,13 +234,23 @@ slides.forEach(setSlidePosition)
 
 indicatorDots[0].classList.add('current-slide')
 
+function debounce(fn, delay) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+    };
+}
+
+const debouncedMakeAlert = debounce(makeAlert, 1000);
+
 const updateUserInput = (e) => {
     const input = e.target
     const value = input.value
 
     if (input.id === 'colorInput') {
         housepass.style.background = value
-        makeAlert('House Pass Enhanced')
+        debouncedMakeAlert('House Pass Enhanced')
     }
     else {
         input.displayField.innerText = value;
@@ -245,7 +265,7 @@ const addBadge = (e) => {
     const img = selectedOption.dataset.img
     input.displayField.src = img
     console.log('Badge Added')
-    makeAlert('House Pass Enhanced')
+    makeAlert('Badge Added')
 }
 
 const adjustFontSize = (element) => {
@@ -283,6 +303,7 @@ function getCookie(name) {
 
 
 const uploadResults = async (surveyResults) => {
+    console.log('Uploading Results...')
     const csrf_token = getCookie('csrftoken')
 
     try {
@@ -293,8 +314,11 @@ const uploadResults = async (surveyResults) => {
             contentType: false,
             processData: false,
         })
+        // console.log(res)
+        // console.log(res.text())
         const parsed = await res.json()
         if (parsed.error) {
+            console.log('There was an error from the server')
             throw `SERVER: ${parsed.error}`
         }
         console.log('Success')
@@ -305,6 +329,7 @@ const uploadResults = async (surveyResults) => {
     catch(err) {
         console.error(err)
         makeAlert('Something went wrong...')
+        makeAlert(err)
     }
 }
 
@@ -373,17 +398,12 @@ const collectAnswers = () => {
         animal: animal.value,
         answers: selectedChoices,
         comments: comments.value,
-        profilePic: profile_picture,
+        profilePic: profile_picture
     }
 
+    console.log('Collected results:')
+    console.log(surveyResults)
     return surveyResults
-}
-
-const displayCanvas = () => {
-    addPhotoBtn.classList.add('hide');
-    canvas.classList.add('show');
-    takePhotoBtn.classList.add('show');
-    getVideo();
 }
 
 const submitSurvey = () => {
