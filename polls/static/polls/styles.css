@@ -95,7 +95,7 @@ body {
 
 .poll-subtitle {
     font-family: 'Beau Rivage', cursive;
-    font-size: 3rem;
+    font-size: 2.8rem;
 }
 
 .poll-question {
@@ -227,14 +227,14 @@ input[type=file] {
 }
 
 .housepass-wrapper {
-    width: 100%;
+    /* width: auto; */
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
 }
 
 .housepass_container {
-    width: min(90vw, 400px);
-    height: calc(min(90vw, 400px) / 1.6);
+    width: min(90vw, 450px);
+    height: calc(min(90vw, 450px) / 1.6);
     box-shadow: 4px 4px 8px rgba(0,0,0,0.7);
     /* border: 3px solid black; */
     margin: 1rem 0;
@@ -242,11 +242,6 @@ input[type=file] {
     background: rgba(20,20,50,1);
     color: white;
     padding: 0.8rem 0;
-}
-
-.housepass_container.front {
-    width: min(90vw, 450px);
-    height: calc(min(90vw, 450px) / 1.6);
 }
 
 .housepass_container.back {
@@ -262,6 +257,12 @@ input[type=file] {
 .housepass_main-content {
     width: 100%;
     height: 100%;
+}
+
+.housepass_img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .housepass_img-container {
@@ -290,37 +291,25 @@ input[type=file] {
 
 .housepass_info-header {
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     letter-spacing: 0.3rem;
     width: 100%;
     border-bottom: 1px solid grey;
     /* background: grey; */
 }
 
-.housepass_info-header.front {
-    font-size: 1.5rem;
-}
-
 .housepass_info-access {
     width: 100%;
     font-weight: bold;
-    font-size: clamp(1.2rem, 20vw, 1.4rem);
+    font-size: clamp(1.2rem, 20vw, 1.6rem);
     margin: -0.3rem 0 0.3rem 0;
     letter-spacing: 0.5rem;
 }
 
-.housepass_info-access.front {
-    font-size: clamp(1.2rem, 20vw, 1.6rem);
-}
-
 .housepass_info-access.menace {
-    font-size: clamp(0.82rem, 20vw, 1.1rem);
+    font-size: clamp(0.82rem, 20vw, 1.3rem);
     letter-spacing: 0.4rem;
     margin: -0.2rem 0 0.3rem 0;
-}
-
-.housepass_info-access.front.menace {
-    font-size: clamp(1.2rem, 20vw, 1.3rem);
 }
 
 .housepass_info-badge-container {
@@ -483,4 +472,28 @@ footer {
     font-size: clamp(0.5rem, 1.4vmin, 0.8rem);
     /* position: fixed; */
     padding-bottom: 1rem;
+}
+
+/*********** MOBILE ************/
+
+@media screen and (max-width: 900px) {
+    #housepass_name {
+        font-size: 0.8rem;
+    }
+
+    .housepass-wrapper {
+        transform: translateX(25%);
+    }
+
+    .housepass_info-header {
+        font-size: 1.1rem;
+    }
+
+    .housepass_info-access {
+        font-size: clamp(1.2rem, 20vw, 1.4rem);
+    }
+
+    .housepass_info-access.menace {
+        font-size: clamp(1rem, 20vw, 0.8rem);
+    }
 }

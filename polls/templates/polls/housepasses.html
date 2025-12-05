@@ -9,14 +9,14 @@
 
     {% for guest in guests %}
     <div class="housepass-wrapper">
-        <div id="housepass" class="housepass_container front flex flex-col" style="background-color:{{guest.fav_color}};">
+        <div id="housepass" class="housepass_container flex flex-col" style="background-color:{{guest.fav_color}};">
             <div class="housepass_main-content flex">
                 <div class="housepass_img-container flex">
                     <img class="housepass_img" src="{{ guest.picture.url }}">
                 </div>
                 <div class="housepass_info-container flex flex-col">
-                    <div class="housepass_info-header front flex">House Pass</div>
-                    <div class="housepass_info-access front flex {% if guest.is_menace %} menace {% endif %}">
+                    <div class="housepass_info-header flex">House Pass</div>
+                    <div class="housepass_info-access flex {% if guest.is_menace %} menace {% endif %}">
                         {% if guest.is_menace %}
                         🚩MENACE🚩
                         {% elif guest.is_vip %}
@@ -109,5 +109,6 @@
 
         handstands.forEach(hs => hs.classList.add('upside-down'))
         svgs_not_question_marks.forEach(svg => svg.classList.add('scale-down'))
+
     </script>
 {% endblock %}
