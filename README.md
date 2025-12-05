@@ -1,7 +1,7 @@
 # HOUSEWARMING
 A survey app to gather info about friends' availability and preferences.
 
-Live at: https://housewarming-bonanza.herokuapp.com
+Live at: https://housewarming-u9ue.onrender.com/
 
 ### Weird Stuff I Learned
 - "overflow-x: hidden" does not work on the body or html element on mobile browsers... has to be on a div inside of them.
@@ -24,4 +24,5 @@ video.play()
 - for some reason, you do not need to change the `DATABASES=` in Settings to postgres or anything else when you deploy.  You can just leave it as is with the default sqlite3.
 - note the AWS S3 configurations at the end of Settings.  These are necessary for S3 buckets.  You will need to set up some of these variables as environment variables, and manually configure them in Heroku with `heroku config:set <VARIABLE>='<VALUE>'`.  See the Corey Schafer youtube tutorials for details.
 - you can send user uploaded images via JS fetch as a base64 dataURL and then save them to Django model instance, but first need to convert it to a ContentFile.  See views.py for details.
+- to deploy to Render you need to specify the PYTHON_VERSION in environment variables.  You also need to make a separate static site (same repository) to serve the static files.
 
