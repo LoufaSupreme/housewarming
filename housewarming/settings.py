@@ -27,10 +27,14 @@ SECRET_KEY = config('SECRET_KEY')
 # SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*', '127.0.0.1']
-
+ALLOWED_HOSTS = [
+    "housewarming-production.up.railway.app",
+    ".up.railway.app",
+    "localhost",
+    "127.0.0.1",
+]
 
 # Application definition
 
