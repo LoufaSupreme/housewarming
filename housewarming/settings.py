@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "housewarming-production.up.railway.app",
+    "housewarming-u9ue.onrender.com",
     ".up.railway.app",
     "localhost",
     "127.0.0.1",
