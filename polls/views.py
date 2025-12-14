@@ -194,13 +194,10 @@ def display_housepasses(request):
     })
 
 def show_results(request):
-    import time
-    time.sleep(40)
-    return HttpResponse('ok')
-    # questions = Question.objects.all()
-    # guests = Guest.objects.all()
-    # return render(request, 'polls/results.html', {
-    #     "questions": questions,
-    #     'guests': guests,
-    # })
+    questions = Question.objects.all()
+    guests = Guest.objects.all()
+    return render(request, 'polls/results.html', {
+        "questions": questions,
+        'guests': guests,
+    })
 
