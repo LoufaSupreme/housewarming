@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import os, mimetypes
-import dj_database_url
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,12 +26,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    "housewarming-production.up.railway.app",
-    "housewarming-u9ue.onrender.com",
-    ".up.railway.app",
+    ".pythonanywhere.com",
     "localhost",
     "127.0.0.1",
 ]
@@ -53,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,10 +83,11 @@ WSGI_APPLICATION = 'housewarming.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    # Temporary local postgres db:
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'temp_import',
@@ -99,10 +96,11 @@ DATABASES = {
     #     'HOST': 'localhost',
     #     'PORT': '5432',
     # },
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
+    # Railway:
+    # "default": dj_database_url.config(
+    #     default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    #     conn_max_age=600,
+    # )
 }
 
 # Password validation
@@ -144,7 +142,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_URL = 'https://housewarming-static.onrender.com/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE =  'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
 MEDIA_URL = f'https://{config("AWS_STORAGE_BUCKET_NAME")}.s3.amazonaws.com/'
 MEDIA_ROOT = ''
 
